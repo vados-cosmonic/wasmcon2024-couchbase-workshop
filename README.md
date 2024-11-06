@@ -68,6 +68,8 @@ just start-devcontainer
 >
 > See `Justfile` for more recipes and the commands they run.
 
+[devcontainers]: https://github.com/devcontainers/cli
+
 ### Manual/Local
 
 To run manually, ensure that you have the following tools installed:
@@ -78,11 +80,9 @@ To run manually, ensure that you have the following tools installed:
 | [`wash`][wash]                                  | WAsmcloud SHell - a tool for managing wasmCloud instances |
 | [`wit-deps`][wit-deps]                          | Manual downloading of WIT interfaces                      |
 | [`tinygo`][tinygo]                              | [TinyGo][tinygo] binary                                   |
-| (optional) [`devcontainers` CLI][devcontainers] | WAsmcloud SHell - a tool for managing wasmCloud instances |
 
 [just]: https://github.com/casey/just
 [wash]: https://wasmcloud.com/docs/installation
-[devcontainers]: https://github.com/devcontainers/cli
 [tinygo]: https://tinygo.org/
 [wit-deps]: https://github.com/bytecodealliance/wit-deps
 
