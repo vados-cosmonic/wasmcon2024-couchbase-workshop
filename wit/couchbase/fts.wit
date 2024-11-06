@@ -1,0 +1,220 @@
+package wasmcloud:couchbase@0.1.0-draft;
+
+/// Support Full Text Search (FTS) provided by Couchbase, which spans:
+///   - Vectors
+///   - Structured/Unstructured text
+///   - Dates
+///   - Numbers
+///   - CIDR notation
+///   - Geospatial data
+///
+/// Reference: https://docs.couchbase.com/server/current/search/search.html
+interface fts {
+  use types.{
+    request-span, document, document-field-name, collection, sort-direction, 
+    bucket-error, search-index-name, retry-strategy, mutation-state,
+    search-scan-consistency
+    };
+
+  variant fts-bucket-error {
+    /// A completely unexpected error
+    unexpected(string),
+  }
+
+  /// Buckets for use with FTS
+  ///
+  /// NOTE: This is unnecessary (and may be implemented as a no-op) for Couchbase versions greater than 6.5
+  resource fts-bucket {
+    constructor(name: string);
+    /// Wait until a bucket is ready to use
+    ///
+    /// This should be done on couchbase versions earlier than 6.5, before performing any search queries.
+    wait-until-ready: func() -> result<_, bucket-error>;
+  }
+
+  /// Errors that occur when creating an FTS index
+  variant fts-index-create-error {
+    /// A completely unexpected error
+    unexpected(string)
+  }
+
+  /// Errors that occur when creating an FTS index
+  variant fts-bucket-create-error {
+    /// A completely unexpected error
+    unexpected(string)
+  }
+
+  /// Errors that occur when performing an FTS search
+  variant fts-search-error {
+    /// A completely unexpected error
+    unexpected(string)
+  }
+
+  /// Search facet
+  variant facet {
+    /// Term Facet
+    term(tuple<string, u64>),
+    /// Numeric Facet
+    numeric(tuple<string, u64>),
+    /// Date range
+    date-range(tuple<string, string, string>),
+  }
+
+  /// The type of highlighting to use for a query
+  enum search-highlight-style {
+    default,
+    /// Use HTML tags
+    html,
+    /// Use ANSI tags
+    ansi,
+  }
+
+  record search-highlight-options {
+    /// Style of highlighting to use for the query
+    style: search-highlight-style,
+    /// Fields to highlight
+    fields: list<string>,
+  }
+
+  /// Options to use when performing a search
+  record search-options {
+    /// Number of results to limit the search results by
+    limit: u32,
+
+    /// Level of data consistency desired for a search query
+    scan-consistency: search-scan-consistency,
+
+    /// Number of results to skip
+    skip: u32,
+
+    /// Enable explain on the search
+    explain: bool,
+
+    /// Enable highlighting on the search
+    highlight: option<search-highlight-options>,
+
+    /// Fields on documents in which to search
+    fields: list<document-field-name>,
+
+    // Fields to sort by
+    sort: list<tuple<document-field-name, sort-direction>>,
+
+    facets: list<tuple<document-field-name, facet>>,
+    consistent-with: mutation-state,
+
+    /// Whether to disable scoring
+    disable-scoring: bool,
+
+    /// Nanoseconds until the search operation should time out
+    timeout-ns: u64,
+
+    /// How and whether to retry the operation
+    retry-strategy: option<retry-strategy>,
+
+    /// A known span to associate this lookup with
+    parent-span: option<request-span>,
+
+    /// Collections in which to search
+    collections: list<collection>,
+  }
+
+  /// Representation of all valid search queries meant to be used on text that can be used with Couchbase
+  variant text-search-query {
+    /// Match query
+    match(string),
+
+    /// Regexp query
+    regexp(string),
+
+    /// query string query
+    %string(string),
+
+    /// Numeric Range query
+    numeric-range(string),
+
+    /// Date Range query
+    date-range(string),
+
+    /// Conjunction query (AND)
+    conjunction(string),
+
+    /// Disjunction query (OR)
+    disjunction(string),
+
+    /// Boolean
+    boolean(string),
+
+    /// Wildcard query
+    wildcard(string),
+
+    /// Document ID query
+    document-id(string),
+
+    /// Boolean field query
+    boolean-field(string),
+
+    /// Term query
+    term(string),
+
+    /// Phrase query
+    phrase(string),
+
+    /// Prefix query
+    prefix(string),
+
+    /// Match-all query
+    match-all(string),
+
+    /// Match-none query
+    match-none(string),
+
+    /// Term-range query
+    term-range(string),
+
+    /// Geospatial distance query
+    geo-distance(string),
+
+    /// Geospatial bounding box query
+    geo-bounding-box(string),
+
+    /// Geospatial polygon query
+    geo-polygon(string),
+  }
+
+  /// How to combine searches in a vector search (see vector-search-query)
+  enum vector-search-combination-method {
+    unknown,
+    and,
+    or,
+  }
+
+  /// Options for performing a vector search query
+  ///
+  /// WARNING: this API is subject to change
+  record vector-search-query {
+   /// Queries to perform
+   queries: list<text-search-query>,
+
+   /// How to combine queries
+   combination: vector-search-combination-method,
+  }
+
+  /// Search query
+  variant search-query {
+    /// Text search
+    text(text-search-query),
+
+    /// Vector search query
+    ///
+    /// WARNING: this API is subject to change
+    vector(vector-search-query),
+  }
+
+  /// Perform a search, using an existing FTS index
+  search: func(
+    index: search-index-name,
+    query: search-query,
+    options: option<search-options>,
+  ) -> result<list<document>, fts-search-error>;
+
+}

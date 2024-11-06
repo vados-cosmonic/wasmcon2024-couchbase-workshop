@@ -1,0 +1,9 @@
+name = "nudb"
+language = "tinygo"
+type = "component"
+version = "0.1.0"
+
+[component]
+wit_world = "nudb"
+wasm_target = "wasm32-wasip2"
+destination = "build/nudb_s.wasm"

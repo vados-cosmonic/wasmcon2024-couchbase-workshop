@@ -1,0 +1,42 @@
+---
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: nudb
+  annotations:
+    description: |
+      NuDB - A Couchbase powered Developer-friendly database, built for WASMCON 2024
+spec:
+  components:
+    - name: nudb
+      type: component
+      properties:
+        image: file://./build/nudb_s.wasm
+      traits:
+        # We allow our DB to scale up as needed to handle incoming load
+        - type: spreadscaler
+          properties:
+            instances: 100
+
+    - name: httpserver
+      type: capability
+      properties:
+        image: ghcr.io/wasmcloud/http-server:0.23.2
+      traits:
+        # Link the httpserver to the component, and configure the HTTP server
+        # to listen on port 8080 for incoming requests
+        #
+        # Since the HTTP server calls the `http-component` component, we establish
+        # a unidirectional link from this `httpserver` provider (the "source")
+        # to the `http-component` component (the "target"), so the server can invoke
+        # the component to handle a request.
+        - type: link
+          properties:
+            target: nudb
+            namespace: wasi
+            package: http
+            interfaces: [incoming-handler]
+            source_config:
+              - name: default-http
+                properties:
+                  address: 127.0.0.1:8080

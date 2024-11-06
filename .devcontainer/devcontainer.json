@@ -1,0 +1,16 @@
+{
+  "image": "laurentdoguin/workspace-couchbase-wash",
+  "dockerComposeFile": "docker-compose.yml",
+  "runArgs": ["--name", "kcon2024-workshop"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "couchbase.vscode-couchbase",
+        "golang.go"
+      ]
+    }
+  },
+  "forwardPorts": [
+    3000
+  ]
+}
