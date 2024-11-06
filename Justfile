@@ -51,4 +51,4 @@ fetch-wit:
 
 # Build the `nudb` WebAssembly component
 build: _ensure-tool-wash fetch-wit
-    {{wash}} build -p component-nudb/wasmcloud.toml component-nudb
+    {{wash}} build -p nudb/wasmcloud.toml

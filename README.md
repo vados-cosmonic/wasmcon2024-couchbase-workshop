@@ -42,10 +42,10 @@ While some of these endpoints are implemented, not all of them are -- that's whe
 
 Here's a run-down of the files in this repository:
 
-| Folder           | Description                                             |
-|------------------|---------------------------------------------------------|
-| `wit`            | WIT definitions we'll be using during the talk          |
-| `component-nudb` | Databse component we'll finish as part of this workshop |
+| Folder | Description                                                           |
+|--------|-----------------------------------------------------------------------|
+| `wit`  | WIT definitions we'll be using during the talk                        |
+| `nudb` | Code for the Database component we'll finish as part of this workshop |
 
 ## 🌎 Environment setup
 
