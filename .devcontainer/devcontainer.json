@@ -2,6 +2,10 @@
   "image": "laurentdoguin/workspace-couchbase-wash",
   "dockerComposeFile": "docker-compose.yml",
   "runArgs": ["--name", "kcon2024-workshop"],
+  "features": {
+    "ghcr.io/couchbase-starter-kit/devcontainer-features/couchbase-server": {},
+    "ghcr.io/couchbase-starter-kit/devcontainer-features/couchbase-shell": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
