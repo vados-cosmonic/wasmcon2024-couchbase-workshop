@@ -1,4 +1,4 @@
-# WASMCON 2024: Implementing a Wasm Native Database API with Couchbase
+# 🛋 WASMCON 2024: Implementing a Wasm Native Database API with Couchbase
 
 Presented by [Couchbase][couchbase] and [Cosmonic][cosmonic] maintainers.
 
@@ -9,9 +9,10 @@ This repository contains everything you need to get started with the workshop:
 [cosmonic]: https://cosmonic.com/
 [couchbase]: https://couchbase.com/
 
-## Workshop
+## 👷 Workshop
 
-In this workshop, we'll be building **NuDB**, a Driven
+In this workshop, we'll be building **NuDB**, an experimental new database with an HTTP API,
+powered by Couchbase.
 
 By the end of the workshop, we will:
 
@@ -23,9 +24,9 @@ By the end of the workshop, we will:
 [wasmcloud-docs-component]: https://wasmcloud.com/docs/concepts/components
 [wasmCloud]: https://wasmcloud.com
 
-### NuDB API
+### ✨ NuDB API
 
-The NuDB API is simple, and aims to be easy for developers to use:
+NuDB's API is simple, maximizing for developer UX:
 
 | API endpoint                   | Description                             |
 |--------------------------------|-----------------------------------------|
@@ -35,19 +36,18 @@ The NuDB API is simple, and aims to be easy for developers to use:
 | `DELETE /api/v1/documents/:id` | Delete a single existing document       |
 | `GET /api/v1/documents/latest` | Get the most recently inserted document |
 
-While some of these endpoints are implemented, not all of them are -- as you build the component you can run the test suite 
-and check your compliance to the API!
+While some of these endpoints are implemented, not all of them are -- that's where you come in!
 
-## Organization
+## 📂 Organization
 
-This repo is organized in this way:
+Here's a run-down of the files in this repository:
 
 | Folder           | Description                                             |
 |------------------|---------------------------------------------------------|
 | `wit`            | WIT definitions we'll be using during the talk          |
 | `component-nudb` | Databse component we'll finish as part of this workshop |
 
-## Environment setup
+## 🌎 Environment setup
 
 ### GitPod
 
