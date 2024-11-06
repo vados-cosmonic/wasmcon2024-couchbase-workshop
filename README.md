@@ -64,9 +64,9 @@ just start-devcontainer
 ```
 
 > [!NOTE]
-> If you prefer to *not* use the `just` task runner, run `devcontainer up --workspace-folder .`
+> If you prefer to *not* use [`just`][just], run `devcontainer up --workspace-folder .`
 >
-> See `Justfile` for more recipes and the commands they run.
+> See [`Justfile`](./Justfile) for more recipes and the commands they run.
 
 [devcontainers]: https://github.com/devcontainers/cli
 
@@ -74,12 +74,12 @@ just start-devcontainer
 
 To run manually, ensure that you have the following tools installed:
 
-| Dependency                                      | Description                                               |
-|-------------------------------------------------|-----------------------------------------------------------|
-| [`just`][just]                                  | Task runner (similar to GNU `make`)                       |
-| [`wash`][wash]                                  | WAsmcloud SHell - a tool for managing wasmCloud instances |
-| [`wit-deps`][wit-deps]                          | Manual downloading of WIT interfaces                      |
-| [`tinygo`][tinygo]                              | [TinyGo][tinygo] binary                                   |
+| Dependency             | Description                                               |
+|------------------------|-----------------------------------------------------------|
+| [`just`][just]         | Task runner (similar to GNU `make`)                       |
+| [`wash`][wash]         | WAsmcloud SHell - a tool for managing wasmCloud instances |
+| [`wit-deps`][wit-deps] | Manual downloading of WIT interfaces                      |
+| [`tinygo`][tinygo]     | [TinyGo][tinygo] binary                                   |
 
 [just]: https://github.com/casey/just
 [wash]: https://wasmcloud.com/docs/installation
