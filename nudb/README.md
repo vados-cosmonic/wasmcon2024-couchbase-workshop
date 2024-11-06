@@ -22,6 +22,7 @@ which enables providing an interface driven by HTTP.
 | `wash`   | [WAsmcloud][wasmcloud] SHell, a tool for running WebAssembly components |
 
 [wasmcloud]: https://wasmcloud.com/docs
+[golang]: https://go.dev
 [tinygo]: https://tinygo.org
 [wash]: https://wasmcloud.com/docs/ecosystem/wash/
 
@@ -48,6 +49,7 @@ curl localhost:8080/api/v1/_status
 ```
 
 [wasmcloud-docs-provider]: https://wasmcloud.com/docs/concepts/providers
+[wash-dev]: https://wasmcloud.com/docs/cli/#wash-dev
 
 ### Build Build Build!
 
