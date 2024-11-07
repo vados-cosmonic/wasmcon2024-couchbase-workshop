@@ -64,9 +64,9 @@ func init() {
 			return
 		}
 
-		// PUT /api/v1/documents/:id
-		if match, ok := documentsByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodPut {
-			handlePutDocument(w, r, match.Params["id"])
+		// POST /api/v1/documents/:id
+		if match, ok := documentsByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodPost {
+			handleInsertDocument(w, r, match.Params["id"])
 			return
 		}
 
@@ -97,8 +97,8 @@ func handleGetAllDocuments(w http.ResponseWriter, r *http.Request) {
 	sendSuccessResponse(w, "handleGetAllDocuments")
 }
 
-// Handle retrieving all documents in a paginated manner
-func handlePutDocument(w http.ResponseWriter, r *http.Request, documentId string) {
+// Handle inserting a single document
+func handleInsertDocument(w http.ResponseWriter, r *http.Request, documentId string) {
 	// Read the HTTP request body
 	doc, err := ioutil.ReadAll(r.Body)
 	if err != nil {
