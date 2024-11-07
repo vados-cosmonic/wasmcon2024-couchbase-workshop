@@ -2,7 +2,7 @@
 
 ## Failed to connect to `localhost` port 8080
 
-If when curling NuBase you get the following message:
+If when curling NuKV you get the following message:
 
 ```
 curl 'localhost:8080/api/v1/_status'

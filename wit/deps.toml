@@ -1,10 +1,10 @@
 # WASI
 http = "https://github.com/WebAssembly/wasi-http/archive/v0.2.0.tar.gz"
-config = "https://github.com/WebAssembly/wasi-config/archive/c667fe67ffa158925511810775155af582d22928.tar.gz"
 logging = "https://github.com/WebAssembly/wasi-logging/archive/d31c41d0d9eed81aabe02333d0025d42acf3fb75.tar.gz"
+config = "https://github.com/WebAssembly/wasi-config/archive/c667fe67ffa158925511810775155af582d22928.tar.gz"
 
-wasmcloud-bus = "wasmcloud-bus"
+# wasmCloud
+wrpc-keyvalue = "https://github.com/wrpc/keyvalue/archive/v0.2.0-draft.tar.gz"
 wasmcloud-component-go = "wasmcloud-component-go-0.1.0"
-wasmcloud-secrets = "https://github.com/wasmCloud/wasmCloud/releases/download/wit-wasmcloud-secrets-v0.1.0-draft/wit-wasmcloud-secrets-0.1.0-draft.tar.gz"
-
-couchbase = "couchbase"
+secrets = "https://github.com/wasmCloud/wasmCloud/releases/download/wit-wasmcloud-secrets-v0.1.0-draft/wit-wasmcloud-secrets-0.1.0-draft.tar.gz"
+wasmcloud = "wasmcloud-bus"

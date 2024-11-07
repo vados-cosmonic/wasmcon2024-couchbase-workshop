@@ -11,7 +11,7 @@ This repository contains everything you need to get started with the workshop:
 
 ## 👷 Workshop
 
-In this workshop, we'll be building **NuBase**, an experimental new database with an HTTP API,
+In this workshop, we'll be building **NuKV**, an experimental new database with an HTTP API,
 powered by Couchbase.
 
 By the end of the workshop, we will:
@@ -27,10 +27,10 @@ By the end of the workshop, we will:
 
 Here's a run-down of the files in this repository:
 
-| Folder            | Description                                                           |
-|-------------------|-----------------------------------------------------------------------|
-| `wit`             | WIT definitions we'll be using during the talk                        |
-| `nubase`          | Code for the Database component we'll finish as part of this workshop |
+| Folder | Description                                                           |
+|--------|-----------------------------------------------------------------------|
+| `wit`  | WIT definitions we'll be using during the talk                        |
+| `nukv` | Code for the Database component we'll finish as part of this workshop |
 
 ## 🌎 Environment setup
 

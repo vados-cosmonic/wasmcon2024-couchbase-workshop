@@ -2,7 +2,7 @@
 x-common-variables: &common-variables
       - COUCHBASE_ADMINISTRATOR_USERNAME=Administrator
       - COUCHBASE_ADMINISTRATOR_PASSWORD=password
-      - COUCHBASE_BUCKET=test
+      - COUCHBASE_BUCKET=nukv
       - COUCHBASE_CONNECTION_STRING=localhost
 
 services:
@@ -28,6 +28,21 @@ services:
     volumes:
       - ./init-couchbase.sh:/init-couchbase.sh
     entrypoint: '/init-couchbase.sh'
+
+
+  jaeger-all-in-one:
+    image: jaegertracing/all-in-one:1.58
+    restart: always
+    ports:
+      - '16686:16686'
+      - '14268:14268'
+      - '14250:14250'
+      - '9411:9411'
+      - '4317:4317'
+      - '4318:4318'
+    environment:
+      COLLECTOR_ZIPKIN_HTTP_PORT: 9411
+      COLLECTOR_OTLP_ENABLED: 'true'
 
 volumes:
   couchbase-data:

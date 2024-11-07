@@ -1,0 +1,66 @@
+---
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: nukv
+  annotations:
+    description: |
+      NuKV - A Couchbase powered Developer-friendly database, built for WASMCON 2024
+spec:
+  components:
+    - name: nukv
+      type: component
+      properties:
+        image: file://./build/nukv_s.wasm
+      traits:
+        # We allow our DB to scale up as needed to handle incoming load
+        - type: spreadscaler
+          properties:
+            instances: 100
+        # Link the component to the wasmcloud couchbase provider
+        - type: link
+          properties:
+            namespace: wrpc
+            package: keyvalue
+            interfaces:
+              - store
+              - atomics
+            target:
+              name: couchbase
+              config:
+                - name: provider-config
+                  properties:
+                    connectionString: 'localhost'
+                    username: 'Administrator'
+                    bucketName: 'nukv'
+                    # NOTE: Do not put passwords in your link config in production!
+                    # wasmCloud has secrets support (https://wasmcloud.com/docs/concepts/secrets).
+                    #
+                    # We do this here only to make demoing simpler, and this only works on a
+                    # limited build (-wasmcon2024) of the provider
+                    allow_unsafe_password: 'enabled'
+                    password: 'password'
+
+    # This proivder mediates our access to Couchbase
+    - name: couchbase
+      type: capability
+      properties:
+        image: ghcr.io/vados-cosmonic/provider-wasmcloud-couchbase:v0.1.0-wamscon2024
+        id: couchbase
+
+    # This provider enables us to receive HTTP requests
+    - name: httpserver
+      type: capability
+      properties:
+        image: ghcr.io/wasmcloud/http-server:0.23.2
+      traits:
+        - type: link
+          properties:
+            target: nukv
+            namespace: wasi
+            package: http
+            interfaces: [incoming-handler]
+            source_config:
+              - name: default-http
+                properties:
+                  address: 127.0.0.1:8080
