@@ -17,19 +17,38 @@ spec:
         - type: spreadscaler
           properties:
             instances: 100
+        # Link the component to the provider on wasi-keyvalue
+        - type: link
+          properties:
+            namespace: wasi
+            package: keyvalue
+            interfaces: [atomics, store]
+            target:
+              name: couchbase
+              secrets:
+                - name: password
+                  properties:
+                    policy: nats-kv
+                    key: couchbase_password
+              config:
+                - name: provider-config
+                  properties:
+                    connectionString: 'localhost'
+                    username: 'admin'
+                    bucketName: 'test'
 
+    # This proivder mediates our access to couchbase
+    - name: couchbase
+      type: capability
+      properties:
+        image: ghcr.io/vados-cosmonic/provider-wasmcloud-couchbase:v0.1.0
+
+    # This provider enables us to receive HTTP requests
     - name: httpserver
       type: capability
       properties:
         image: ghcr.io/wasmcloud/http-server:0.23.2
       traits:
-        # Link the httpserver to the component, and configure the HTTP server
-        # to listen on port 8080 for incoming requests
-        #
-        # Since the HTTP server calls the `http-component` component, we establish
-        # a unidirectional link from this `httpserver` provider (the "source")
-        # to the `http-component` component (the "target"), so the server can invoke
-        # the component to handle a request.
         - type: link
           properties:
             target: nudb
