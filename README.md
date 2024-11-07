@@ -86,6 +86,3 @@ Once you have all required tools installed, you can build the project by running
 ```console
 just build
 ```
-
-
-
