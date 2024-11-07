@@ -25,8 +25,6 @@ By the end of the workshop, we will:
 
 ## 📂 Organization
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/vados-cosmonic/wasmcon2024-couchbase-workshop)
-
 Here's a run-down of the files in this repository:
 
 | Folder            | Description                                                           |
@@ -37,6 +35,8 @@ Here's a run-down of the files in this repository:
 ## 🌎 Environment setup
 
 ### GitPod
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/vados-cosmonic/wasmcon2024-couchbase-workshop)
 
 If using [GitPod][gitpod], you can launch `.gitpod.yml` file in this repository, and make an account at GitPod.io if necessary to get into an environment that "just works"!
 
