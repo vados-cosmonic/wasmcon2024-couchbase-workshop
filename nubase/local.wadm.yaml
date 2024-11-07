@@ -36,7 +36,7 @@ spec:
                     #
                     # We do this here only to make demoing simpler, and this only works on a
                     # limited build (-wasmcon2024) of the provider
-                    unsafe: 'enabled'
+                    allow_unsafe_password: 'enabled'
                     password: 'admin'
 
     # This proivder mediates our access to Couchbase

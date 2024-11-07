@@ -1,6 +1,8 @@
 just := env_var_or_default("JUST", just_executable())
 wash := env_var_or_default("WASH", "wash")
 docker := env_var_or_default("DOCKER", "docker")
+go := env_var_or_default("GO", "go")
+tinygo := env_var_or_default("TINYGO", "tinygo")
 wit-deps := env_var_or_default("WIT_DEPS", "wit-deps")
 devcontainer := env_var_or_default("DEVCONTAINER", "devcontainer")
 
@@ -25,12 +27,20 @@ devcontainer_container_name := env_var_or_default("DEVCONTAINER_CONTAINER_NAME",
 @_ensure-tool-wit-deps:
     command -v {{wit-deps}} || echo "wit-deps binary is missing/not on your PATH, please install it (see: https://github.com/bytecodealliance/wit-deps)"
 
+# Ensure `tinygo` tooling is present
+@_ensure-tool-tinygo:
+    command -v {{tinygo}} || echo "tinygo binary is missing/not on your PATH, please install it (see: https://tinygo.org/getting-started/install/)"
+
+# Ensure `go` tooling is present
+@_ensure-tool-go:
+    command -v {{go}} || echo "go binary is missing/not on your PATH, please install it (see: https://go.dev)"
+
 ###############
 # Environment #
 ###############
 
 # Check for required tools
-setup-manual: _ensure-tool-wash _ensure-tool-docker
+setup-manual: _ensure-tool-wash _ensure-tool-docker _ensure-tool-tinygo _ensure-tool-go
 
 # Start the local devcontainer
 start-devcontainer: _ensure-tool-devcontainer
