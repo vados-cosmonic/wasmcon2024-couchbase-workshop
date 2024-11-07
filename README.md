@@ -86,3 +86,15 @@ Once you have all required tools installed, you can build the project by running
 ```console
 just build
 ```
+
+Then, start Couchbase, using `docker compose`:
+
+```console
+just start-couchbase
+```
+
+From here, you can start developing the component:
+
+```console
+just dev
+```
