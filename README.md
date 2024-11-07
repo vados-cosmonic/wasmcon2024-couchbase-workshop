@@ -25,6 +25,8 @@ By the end of the workshop, we will:
 
 ## 📂 Organization
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/vados-cosmonic/wasmcon2024-couchbase-workshop)
+
 Here's a run-down of the files in this repository:
 
 | Folder            | Description                                                           |
