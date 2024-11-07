@@ -10,7 +10,7 @@ services:
       - 11207:11207
       - 11211:11211
     environment:
-      - COUCHBASE_ADMINISTRATOR_USERNAME=admin
+      - COUCHBASE_ADMINISTRATOR_USERNAME=Administrator
       - COUCHBASE_ADMINISTRATOR_PASSWORD=kubecon2024
       - COUCHBASE_BUCKET=kubecon
       - COUCHBASE_CONNECTION_STRING=localhost

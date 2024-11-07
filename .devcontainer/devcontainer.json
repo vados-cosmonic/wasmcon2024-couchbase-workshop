@@ -6,6 +6,12 @@
     "ghcr.io/couchbase-starter-kit/devcontainer-features/couchbase-server": {},
     "ghcr.io/couchbase-starter-kit/devcontainer-features/couchbase-shell": {}
   },
+  "containerEnv": {
+    "COUCHBASE_ADMINISTRATOR_USERNAME": "Administrator",
+    "COUCHBASE_ADMINISTRATOR_PASSWORD": "kubecon2024",
+    "COUCHBASE_BUCKET": "kubecon",
+    "COUCHBASE_CONNECTION_STRING": "localhost"
+  },
   "customizations": {
     "vscode": {
       "extensions": [

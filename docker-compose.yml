@@ -1,3 +1,10 @@
+
+x-common-variables: &common-variables
+      - COUCHBASE_ADMINISTRATOR_USERNAME=Administrator
+      - COUCHBASE_ADMINISTRATOR_PASSWORD=password
+      - COUCHBASE_BUCKET=test
+      - COUCHBASE_CONNECTION_STRING=localhost
+
 services:
   couchbase:
     image: couchbase:7.6.3@sha256:78446fa1cf1c9cea6c563114b7882b5c3f84d1663207b15dd966bf8f10b427c0
@@ -9,6 +16,7 @@ services:
       - 11210:11210
       - 11207:11207
       - 11211:11211
+    environment: *common-variables
     volumes:
       - couchbase-data:/opt/couchbase/var
 
@@ -16,11 +24,7 @@ services:
     image: couchbase:latest
     depends_on:
       - couchbase
-    environment:
-      - COUCHBASE_ADMINISTRATOR_USERNAME=admin
-      - COUCHBASE_ADMINISTRATOR_PASSWORD=password
-      - COUCHBASE_BUCKET=test
-      - COUCHBASE_CONNECTION_STRING=localhost
+    environment: *common-variables
     volumes:
       - ./init-couchbase.sh:/init-couchbase.sh
     entrypoint: '/init-couchbase.sh'

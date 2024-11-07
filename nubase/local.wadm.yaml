@@ -29,7 +29,7 @@ spec:
                 - name: provider-config
                   properties:
                     connectionString: 'localhost'
-                    username: 'admin'
+                    username: 'Administrator'
                     bucketName: 'test'
                     # NOTE: Do not put passwords in your link config in production!
                     # wasmCloud has secrets support (https://wasmcloud.com/docs/concepts/secrets).
