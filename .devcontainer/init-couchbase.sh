@@ -19,7 +19,7 @@ fi
 sleep 5
 
 # Create the bucket
-if $CLI bucket-list -c couchbase:8091 -u $COUCHBASE_ADMINISTRATOR_USERNAME -p $COUCHBASE_ADMINISTRATOR_PASSWORD | grep test > /dev/null; then
+if $CLI bucket-list -c couchbase:8091 -u $COUCHBASE_ADMINISTRATOR_USERNAME -p $COUCHBASE_ADMINISTRATOR_PASSWORD | grep $COUCHBASE_BUCKET > /dev/null; then
   echo "Bucket already created"
   exit 0
 else 

@@ -32,7 +32,7 @@ spec:
                   properties:
                     connectionString: 'localhost'
                     username: 'Administrator'
-                    bucketName: 'test'
+                    bucketName: 'nudb'
                     # NOTE: Do not put passwords in your link config in production!
                     # wasmCloud has secrets support (https://wasmcloud.com/docs/concepts/secrets).
                     #
