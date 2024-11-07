@@ -8,6 +8,8 @@ devcontainer := env_var_or_default("DEVCONTAINER", "devcontainer")
 
 devcontainer_container_name := env_var_or_default("DEVCONTAINER_CONTAINER_NAME", "kcon2024-workshop")
 
+couchbase_docker_image := env_var_or_default("COUCHBASE_DOCKER_IMAGE", "couchbase:7.6.3@sha256:78446fa1cf1c9cea6c563114b7882b5c3f84d1663207b15dd966bf8f10b427c0")
+
 @_default:
     {{just}} --list
 
@@ -51,6 +53,18 @@ stop-devcontainer: _ensure-tool-docker
     {{docker}} stop {{devcontainer_container_name}}
     {{docker}} rm {{devcontainer_container_name}}
 
+##################
+# Infrastructure #
+##################
+
+couchbase_container_name := "couchbase"
+
+start-couchbase:
+    {{docker}} compose -f docker-compose.yml up
+
+stop-couchbase:
+    {{docker}} compose -f docker-compose.yml down
+
 #########
 # Build #
 #########
@@ -62,3 +76,7 @@ fetch-wit:
 # Build the `nubase` WebAssembly component
 build: _ensure-tool-wash fetch-wit
     {{wash}} build -p nubase/wasmcloud.toml
+
+# Start `wash dev` to dynamically develop the `nubase` WebAssembly component
+dev: _ensure-tool-wash fetch-wit
+    cd nubase && {{wash}} dev
