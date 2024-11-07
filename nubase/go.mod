@@ -1,4 +1,4 @@
-module github.com/wasmcloud/wasmcloud/examples/golang/components/http-hello-world
+module github.com/vados-cosmonic/wasmcon2024-couchbase-workshop
 
 go 1.23.0
 
