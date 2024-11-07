@@ -2,6 +2,10 @@
 
 package lattice
 
+import (
+	"github.com/bytecodealliance/wasm-tools-go/cm"
+)
+
 // This file contains wasmimport and wasmexport declarations for "wasmcloud:bus@1.0.0".
 
 //go:wasmimport wasmcloud:bus/lattice@1.0.0 [resource-drop]call-target-interface
@@ -14,4 +18,4 @@ func wasmimport_NewCallTargetInterface(namespace0 *uint8, namespace1 uint32, pac
 
 //go:wasmimport wasmcloud:bus/lattice@1.0.0 set-link-name
 //go:noescape
-func wasmimport_SetLinkName(name0 *uint8, name1 uint32, interfaces0 *CallTargetInterface, interfaces1 uint32)
+func wasmimport_SetLinkName(name0 *uint8, name1 uint32, interfaces0 *CallTargetInterface, interfaces1 uint32, result *cm.Result[string, struct{}, string])

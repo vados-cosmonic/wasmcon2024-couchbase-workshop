@@ -9,6 +9,8 @@ import (
 
 // Exit represents the imported function "exit".
 //
+// Exit the current instance and any linked instances.
+//
 //	exit: func(status: result)
 //
 //go:nosplit

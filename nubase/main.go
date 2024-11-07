@@ -26,18 +26,27 @@ import (
 	// To figure out how to use the types in here, see
 	// - gen/wasi/keyvalue/store/store.wit.go (generated, present locally)
 	// - gen/wasi/keyvalue/atomics/atomics.wit.go (generated, present locally)
-	kv_store "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store"
-	// kv_atomics "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/atomics"
+	store "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wrpc/keyvalue/store"
+	// atomics "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/atomics"
 )
 
 // Since we don't run this program like a CLI, the `main` function is empty.
 // Instead, setup is done via the `init` function
 func main() {}
 
+const (
+	bucket = "nudb"
+)
+
 var getStatusPath = urlpath.New("/api/v1/_status")
 var keyByIdPath = urlpath.New("/api/v1/keys/:key")
 var lockPath = urlpath.New("/api/v1/keys/:key/lock")
 var unlockPath = urlpath.New("/api/v1/keys/:key/unlock")
+
+// TODO: Implement the following APIs
+// var upsertByKeyPath = urlpath.New("/api/v1/keys/:key/upsert")
+// var batchInsertPath = urlpath.New("/api/v1/batch/insert")
+// var batchUpsertPath = urlpath.New("/api/v1/batch/upsert")
 
 // Entrypoint for the WebAssembly component
 func init() {
@@ -75,6 +84,10 @@ func init() {
 			return
 		}
 
+		// TODO: Add a match & handler call for the Upsert API (upsertByKeyPath)
+		// TODO: Add a match & handler call for the batchInsert API (batchInsertPath)
+		// TODO: Add a match & handler call for the batchUpsert API (batchUpsertPathT)
+
 		sendErrorResponse(w, fmt.Sprintf("unrecognized path [%s]", r.URL.Path))
 	})
 }
@@ -86,53 +99,39 @@ func handleStatus(w http.ResponseWriter, r *http.Request) {
 
 // Handle retrieving the document for a given key
 func handleGetKey(w http.ResponseWriter, r *http.Request, key string) {
-	// Open the nudb bucket
-	bucket_res := kv_store.Open("nudb"); if bucket_res.Err() != nil {
-		sendErrorResponse(w, fmt.Sprintf("failed to open bucket: %s", bucket_res.Err()))
-		return
-	}
-	bucket := bucket_res.OK()
-
 	// Retrieve the value
-	value_res := bucket.Get(key); if value_res.Err() != nil {
+	value_res := store.Get(bucket, key)
+	if value_res.Err() != nil {
 		sendErrorResponse(w, fmt.Sprintf("failed to retrieve value: %s", value_res.Err()))
 		return
 	}
-	value := value_res.OK();
-
-	// if err := res.Err(); err != nil {
-	//	sendErrorResponse(w, fmt.Sprintf("get operation failed: %s", err))
-	//	return
-	// }
+	value := value_res.OK()
 
 	sendSuccessResponse(w, value)
 }
 
 // Handle inserting a document at a given key
 func handleInsertDocumentForKey(w http.ResponseWriter, r *http.Request, key string) {
-	doc, err := ioutil.ReadAll(r.Body); if err != nil {
+	bytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
 		sendErrorResponse(w, fmt.Sprintf("failed to get request body: %s", err))
 		return
 	}
 	defer r.Body.Close()
 
-	// TODO: Ensure the body is valid JSON
-
-	// Convert the body to bytes
-	bytes := cm.ToList(doc)
-
-	// Open the nudb bucket
-	bucket_res := kv_store.Open("nudb"); if bucket_res.Err() != nil {
-		sendErrorResponse(w, fmt.Sprintf("failed to open bucket: %s", bucket_res.Err()))
+	// Ensure the body is valid JSON document
+	var payload map[string]interface{}
+	if err := json.Unmarshal(bytes, &payload); err != nil {
+		sendErrorResponse(w, fmt.Sprintf("invalid JSON body: %s", err))
 		return
 	}
-	bucket := bucket_res.OK()
 
-	value_res := bucket.Set(key, bytes); if value_res.Err() != nil {
+	value_res := store.Set("nudb", key, cm.ToList(bytes))
+	if value_res.Err() != nil {
 		sendErrorResponse(w, fmt.Sprintf("failed to retrieve value: %s", value_res.Err()))
 		return
 	}
-	value := value_res.OK();
+	value := value_res.OK()
 
 	sendSuccessResponse(w, value)
 }
@@ -147,43 +146,19 @@ func handleUnlockKey(w http.ResponseWriter, r *http.Request, key string) {
 	sendSuccessResponse(w, "handleUnlockKey")
 }
 
-// // Handle inserting a single document
-// func handleInsertDocument(w http.ResponseWriter, r *http.Request, documentId string) {
-//	// Read the HTTP request body
-//	doc, err := ioutil.ReadAll(r.Body)
-//	if err != nil {
-//		sendErrorResponse(w, fmt.Sprintf("failed to get request body: %s", err))
-//		return
-//	}
-//	defer r.Body.Close()
-
-//	// Retrieve the document, using the generated bindings for `wasmcloud:couchbase/documents.get@0.1.0-draft`
-//	res := document.Insert(types.DocumentID(documentId), types.DocumentRaw(types.JSONString(doc)), cm.None[document.DocumentInsertOptions]())
-//	if err := res.Err(); err != nil {
-//		sendErrorResponse(w, fmt.Sprintf("operation failed: %s", err))
-//		return
-//	}
-
-//	sendSuccessResponse(w, res.OK())
+// // TODO: Handle upserting a single document with a given key
+// func handleUpsertByKey(w http.ResponseWriter, r *http.Request, key string) {
+//	sendSuccessResponse(w, "handleBatchKey")
 // }
 
-// // Handle retrieving a single document by ID
-// func handleGetSingleDocumentById(w http.ResponseWriter, r *http.Request, documentId string) {
-//	// Retrieve the document, using the generated bindings for `wasmcloud:couchbase/documents.get@0.1.0-draft`
-//	res := document.Get(types.DocumentID(documentId), cm.None[document.DocumentGetOptions]())
-//	// TODO: check for error
-
-//	sendSuccessResponse(w, res)
+// // TODO: Handle batch inserting one or more documents
+// func handleBatchInsert(w http.ResponseWriter, r *http.Request, key string) {
+//	sendSuccessResponse(w, "handleBatchKey")
 // }
 
-// // Handle deleting a single document by ID
-// func handleDeleteSingleDocumentById(w http.ResponseWriter, r *http.Request, documentId string) {
-//	sendSuccessResponse(w, "handleDeleteSingleDocumentById")
-// }
-
-// // Handle getting the latest inserted document
-// func handleGetLatestDocument(w http.ResponseWriter, r *http.Request) {
-//	sendSuccessResponse(w, "handleGetLatestDocument")
+// // TODO: Handle batch upserting one or more documents
+// func handleBatchUpsert(w http.ResponseWriter, r *http.Request, key string) {
+//	sendSuccessResponse(w, "handleBatchKey")
 // }
 
 // Response is a generic struct that holds any data of type T

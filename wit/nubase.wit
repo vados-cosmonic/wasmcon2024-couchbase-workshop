@@ -22,8 +22,8 @@ world nubase {
   ///
   /// https://github.com/couchbaselabs/wasmcloud-provider-couchbase/blob/main/wit/couchbase/document.wit
   ///
-  import wasi:keyvalue/store@0.2.0-draft;
-  import wasi:keyvalue/atomics@0.2.0-draft;
+  import wrpc:keyvalue/store@0.2.0-draft;
+  import wrpc:keyvalue/atomics@0.2.0-draft;
 
   /// Exposes a HTTP handler that delivers the NuBase API
   export wasi:http/incoming-handler@0.2.0;

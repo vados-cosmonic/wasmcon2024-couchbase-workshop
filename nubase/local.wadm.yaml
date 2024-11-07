@@ -20,7 +20,7 @@ spec:
         # Link the component to the wasmcloud couchbase provider
         - type: link
           properties:
-            namespace: wasi
+            namespace: wrpc
             package: keyvalue
             interfaces:
               - store

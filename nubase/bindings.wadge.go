@@ -6,7 +6,7 @@ package main
 
 import (
 	github_com__bytecodealliance__wasm___tools___go__cm "github.com/bytecodealliance/wasm-tools-go/cm"
-	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store"
+	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wrpc/keyvalue/store"
 	go_wasmcloud_dev__component__gen__wasi__clocks__monotonic___clock "go.wasmcloud.dev/component/gen/wasi/clocks/monotonic-clock"
 	go_wasmcloud_dev__component__gen__wasi__http__outgoing___handler "go.wasmcloud.dev/component/gen/wasi/http/outgoing-handler"
 	go_wasmcloud_dev__component__gen__wasi__http__types "go.wasmcloud.dev/component/gen/wasi/http/types"
@@ -1985,13 +1985,17 @@ func wasmimport_OutputStreamResourceDrop(self0 uint32) {
 	return
 }
 
-//go:linkname wasmimport_BucketDelete github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketDelete
-func wasmimport_BucketDelete(self0 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
+//go:linkname wasmimport_Delete github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wrpc/keyvalue/store.wasmimport_Delete
+func wasmimport_Delete(bucket0 *uint8, bucket1 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.Error, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.Error]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.delete", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&self0)
+		return __instance.Call("wrpc:keyvalue/store@0.2.0-draft", "delete", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(bucket0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&bucket1)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
@@ -2013,13 +2017,17 @@ func wasmimport_BucketDelete(self0 uint32, key0 *uint8, key1 uint32, result *git
 	return
 }
 
-//go:linkname wasmimport_BucketExists github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketExists
-func wasmimport_BucketExists(self0 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.ErrorShape, bool, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
+//go:linkname wasmimport_Exists github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wrpc/keyvalue/store.wasmimport_Exists
+func wasmimport_Exists(bucket0 *uint8, bucket1 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.ErrorShape, bool, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.Error]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.exists", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&self0)
+		return __instance.Call("wrpc:keyvalue/store@0.2.0-draft", "exists", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(bucket0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&bucket1)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
@@ -2041,13 +2049,17 @@ func wasmimport_BucketExists(self0 uint32, key0 *uint8, key1 uint32, result *git
 	return
 }
 
-//go:linkname wasmimport_BucketGet github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketGet
-func wasmimport_BucketGet(self0 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.OptionListU8Shape, github_com__bytecodealliance__wasm___tools___go__cm.Option[github_com__bytecodealliance__wasm___tools___go__cm.List[uint8]], github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
+//go:linkname wasmimport_Get github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wrpc/keyvalue/store.wasmimport_Get
+func wasmimport_Get(bucket0 *uint8, bucket1 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.OptionListU8Shape, github_com__bytecodealliance__wasm___tools___go__cm.Option[github_com__bytecodealliance__wasm___tools___go__cm.List[uint8]], github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.Error]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.get", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&self0)
+		return __instance.Call("wrpc:keyvalue/store@0.2.0-draft", "get", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(bucket0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&bucket1)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
@@ -2069,13 +2081,17 @@ func wasmimport_BucketGet(self0 uint32, key0 *uint8, key1 uint32, result *github
 	return
 }
 
-//go:linkname wasmimport_BucketListKeys github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketListKeys
-func wasmimport_BucketListKeys(self0 uint32, cursor0 uint32, cursor1 uint64, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.KeyResponseShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.KeyResponse, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
+//go:linkname wasmimport_ListKeys github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wrpc/keyvalue/store.wasmimport_ListKeys
+func wasmimport_ListKeys(bucket0 *uint8, bucket1 uint32, cursor0 uint32, cursor1 uint64, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.KeyResponseShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.KeyResponse, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.Error]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.list-keys", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&self0)
+		return __instance.Call("wrpc:keyvalue/store@0.2.0-draft", "list-keys", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(bucket0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&bucket1)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
@@ -2097,13 +2113,17 @@ func wasmimport_BucketListKeys(self0 uint32, cursor0 uint32, cursor1 uint64, res
 	return
 }
 
-//go:linkname wasmimport_BucketSet github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketSet
-func wasmimport_BucketSet(self0 uint32, key0 *uint8, key1 uint32, value0 *uint8, value1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
+//go:linkname wasmimport_Set github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wrpc/keyvalue/store.wasmimport_Set
+func wasmimport_Set(bucket0 *uint8, bucket1 uint32, key0 *uint8, key1 uint32, value0 *uint8, value1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.Error, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wrpc__keyvalue__store.Error]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.set", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&self0)
+		return __instance.Call("wrpc:keyvalue/store@0.2.0-draft", "set", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(bucket0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&bucket1)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
@@ -2120,46 +2140,6 @@ func wasmimport_BucketSet(self0 uint32, key0 *uint8, key1 uint32, value0 *uint8,
 			return ptr
 		}(), func() unsafe.Pointer {
 			ptr := unsafe.Pointer(&value1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_BucketResourceDrop github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketResourceDrop
-func wasmimport_BucketResourceDrop(self0 uint32) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[resource-drop]bucket", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&self0)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_Open github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_Open
-func wasmimport_Open(identifier0 *uint8, identifier1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.ErrorShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Bucket, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "open", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(identifier0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&identifier1)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
