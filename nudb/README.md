@@ -1,4 +1,4 @@
-# NuDB
+# ✨ NuDB
 
 This component implements a HTTP-API driven WebAssembly-native Database powered by [Couchbase][couchbase].
 
@@ -13,7 +13,21 @@ which enables providing an interface driven by HTTP.
 [wit]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
 [wasi-http]: https://github.com/WebAssembly/wasi-http
 
-## Prerequisites
+### 📚 NuDB API
+
+NuDB's API is simple, maximizing for developer UX:
+
+| API endpoint                   | Description                             |
+|--------------------------------|-----------------------------------------|
+| `GET /api/v1/documents`        | Get all documents (paginated)           |
+| `GET /api/v1/documents/:id`    | Get a single document                   |
+| `PUT /api/v1/documents`        | Insert a single document                |
+| `DELETE /api/v1/documents/:id` | Delete a single existing document       |
+| `GET /api/v1/documents/latest` | Get the most recently inserted document |
+
+While some of these endpoints are implemented, not all of them are -- that's where you come in!
+
+## 📦 Prerequisites
 
 | Tool     | Description                                                             |
 |----------|-------------------------------------------------------------------------|
@@ -26,7 +40,7 @@ which enables providing an interface driven by HTTP.
 [tinygo]: https://tinygo.org
 [wash]: https://wasmcloud.com/docs/ecosystem/wash/
 
-## Quickstart
+## 👟 Quickstart
 
 ### Development
 
@@ -55,13 +69,3 @@ curl localhost:8080/api/v1/_status
 
 Once you're up and running with `wash dev` and can access the serveer, you can start implementing the
 missing API functionality (marked by `// TODO`s) in `main.go`!
-
-As a reminder, the APIs we'll be implementing are the following:
-
-| API endpoint                   | Description                             |
-|--------------------------------|-----------------------------------------|
-| `GET /api/v1/documents`        | Get all documents (paginated)           |
-| `GET /api/v1/documents/:id`    | Get a single document                   |
-| `PUT /api/v1/documents`        | Insert a single document                |
-| `DELETE /api/v1/documents/:id` | Delete a single existing document       |
-| `GET /api/v1/documents/latest` | Get the most recently inserted document |

@@ -24,20 +24,6 @@ By the end of the workshop, we will:
 [wasmcloud-docs-component]: https://wasmcloud.com/docs/concepts/components
 [wasmCloud]: https://wasmcloud.com
 
-### ✨ NuDB API
-
-NuDB's API is simple, maximizing for developer UX:
-
-| API endpoint                   | Description                             |
-|--------------------------------|-----------------------------------------|
-| `GET /api/v1/documents`        | Get all documents (paginated)           |
-| `GET /api/v1/documents/:id`    | Get a single document                   |
-| `PUT /api/v1/documents`        | Insert a single document                |
-| `DELETE /api/v1/documents/:id` | Delete a single existing document       |
-| `GET /api/v1/documents/latest` | Get the most recently inserted document |
-
-While some of these endpoints are implemented, not all of them are -- that's where you come in!
-
 ## 📂 Organization
 
 Here's a run-down of the files in this repository:
