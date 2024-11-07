@@ -75,10 +75,17 @@ To run manually, ensure that you have the following tools installed:
 [go]: https://go.dev/
 [wit-deps]: https://github.com/bytecodealliance/wit-deps
 
-Once you have the required tooling installed, run the following:
+You can easily check which tools are not installed by running:
 
 ```console
-just setup-manual build
+just setup-manual
 ```
 
-This step will make sure that required/expected tooling is installed
+Once you have all required tools installed, you can build the project by running:
+
+```console
+just build
+```
+
+
+
