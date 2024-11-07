@@ -17,31 +17,33 @@ spec:
         - type: spreadscaler
           properties:
             instances: 100
-        # Link the component to the provider on wasi-keyvalue
+        # Link the component to the wasmcloud couchbase provider
         - type: link
           properties:
-            namespace: wasi
-            package: keyvalue
-            interfaces: [atomics, store]
+            namespace: wasmcloud
+            package: couchbase
+            interfaces: [document]
             target:
               name: couchbase
-              secrets:
-                - name: password
-                  properties:
-                    policy: nats-kv
-                    key: couchbase_password
               config:
                 - name: provider-config
                   properties:
                     connectionString: 'localhost'
                     username: 'admin'
                     bucketName: 'test'
+                    # NOTE: Do not put passwords in your link config in production!
+                    # wasmCloud has secrets support (https://wasmcloud.com/docs/concepts/secrets).
+                    #
+                    # We do this here only to make demoing simpler, and this only works on a
+                    # limited build (-wasmcon2024) of the provider
+                    unsafe: 'enabled'
+                    password: 'admin'
 
-    # This proivder mediates our access to couchbase
+    # This proivder mediates our access to Couchbase
     - name: couchbase
       type: capability
       properties:
-        image: ghcr.io/vados-cosmonic/provider-wasmcloud-couchbase:v0.1.0
+        image: ghcr.io/vados-cosmonic/provider-wasmcloud-couchbase:v0.1.0-wamscon2024
 
     # This provider enables us to receive HTTP requests
     - name: httpserver

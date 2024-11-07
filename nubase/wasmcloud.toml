@@ -7,3 +7,15 @@ version = "0.1.0"
 wit_world = "nubase"
 wasm_target = "wasm32-wasip2"
 destination = "build/nubase_s.wasm"
+
+[dev]
+manifests = [
+  # Here, we specify that when we develop the nubase component,
+  # we want to use a custom declarative WADM manifest, which has
+  # additional providers and other things specified.
+  #
+  # Not sure what WADM is?
+  #   See: https://github.com/wasmCloud/wadm
+  #
+  { component_name = "nubase", path = "local.wadm.yaml" },
+]
