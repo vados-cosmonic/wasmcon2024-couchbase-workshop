@@ -31,7 +31,6 @@ Here's a run-down of the files in this repository:
 |-------------------|-----------------------------------------------------------------------|
 | `wit`             | WIT definitions we'll be using during the talk                        |
 | `nubase`          | Code for the Database component we'll finish as part of this workshop |
-| `nubase-http-api` | HTTP API component that exposes `nubase`                              |
 
 ## 🌎 Environment setup
 
