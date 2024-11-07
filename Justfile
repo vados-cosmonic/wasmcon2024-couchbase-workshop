@@ -49,6 +49,6 @@ stop-devcontainer: _ensure-tool-docker
 fetch-wit:
     {{wit-deps}} && {{wit-deps}} update
 
-# Build the `nudb` WebAssembly component
+# Build the `nubase` WebAssembly component
 build: _ensure-tool-wash fetch-wit
-    {{wash}} build -p nudb/wasmcloud.toml
+    {{wash}} build -p nubase/wasmcloud.toml

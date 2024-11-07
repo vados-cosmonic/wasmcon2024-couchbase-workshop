@@ -2,16 +2,16 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: nudb
+  name: nubase
   annotations:
     description: |
-      NuDB - A Couchbase powered Developer-friendly database, built for WASMCON 2024
+      NuBase - A Couchbase powered Developer-friendly database, built for WASMCON 2024
 spec:
   components:
-    - name: nudb
+    - name: nubase
       type: component
       properties:
-        image: file://./build/nudb_s.wasm
+        image: file://./build/nubase_s.wasm
       traits:
         # We allow our DB to scale up as needed to handle incoming load
         - type: spreadscaler
@@ -51,7 +51,7 @@ spec:
       traits:
         - type: link
           properties:
-            target: nudb
+            target: nubase
             namespace: wasi
             package: http
             interfaces: [incoming-handler]
