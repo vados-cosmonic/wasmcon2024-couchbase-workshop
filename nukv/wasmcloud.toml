@@ -1,21 +1,21 @@
-name = "nubase"
+name = "nukv"
 language = "tinygo"
 type = "component"
 version = "0.1.0"
 
 [component]
-wit_world = "nubase"
+wit_world = "nukv"
 wasm_target = "wasm32-wasip2"
-destination = "build/nubase_s.wasm"
+destination = "build/nukv_s.wasm"
 
 [dev]
 manifests = [
-  # Here, we specify that when we develop the nubase component,
+  # Here, we specify that when we develop the nukv component,
   # we want to use a custom declarative WADM manifest, which has
   # additional providers and other things specified.
   #
   # Not sure what WADM is?
   #   See: https://github.com/wasmCloud/wadm
   #
-  { component_name = "nubase", path = "local.wadm.yaml" },
+  { component_name = "nukv", path = "local.wadm.yaml" },
 ]

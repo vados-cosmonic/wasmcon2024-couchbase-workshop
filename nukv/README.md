@@ -1,9 +1,9 @@
-# ✨ NuBase
+# ✨ NuKV
 
-NuBase is a WebAssembly-native database, exposed via HTTP.
+NuKV is a WebAssembly-native database, exposed via HTTP.
 
 Importantly, this [WebAssembly Component][wasm-components] `import`s the `wasmcoud:couchbase/documents`
-interface (see [related WIT](../wit/nubase.wit)), and makes that functionality available via HTTP
+interface (see [related WIT](../wit/nukv.wit)), and makes that functionality available via HTTP
 by exporting the [WASI][wasi] standard [`wasi:http/incoming-handler`][wasi-http].
 
 [couchbase]: https://couchbase.com
@@ -12,9 +12,9 @@ by exporting the [WASI][wasi] standard [`wasi:http/incoming-handler`][wasi-http]
 [wasm-components]: https://component-model.bytecodealliance.org/
 [wasi]: https://wasi.dev
 
-### 📚 NuBase HTTP API
+### 📚 NuKV HTTP API
 
-NuBase's API is simple, maximizing for developer UX, exposing simple
+NuKV's API is simple, maximizing for developer UX, exposing simple
 document-level operations -- a "baby's first [Couchbase][couchbase] API", making use of the full
 power of Couchbase underneath:
 

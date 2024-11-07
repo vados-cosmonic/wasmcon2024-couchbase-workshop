@@ -2,16 +2,16 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: nubase
+  name: nukv
   annotations:
     description: |
-      NuBase - A Couchbase powered Developer-friendly database, built for WASMCON 2024
+      NuKV - A Couchbase powered Developer-friendly database, built for WASMCON 2024
 spec:
   components:
-    - name: nubase
+    - name: nukv
       type: component
       properties:
-        image: file://./build/nubase_s.wasm
+        image: file://./build/nukv_s.wasm
       traits:
         # We allow our DB to scale up as needed to handle incoming load
         - type: spreadscaler
@@ -32,7 +32,7 @@ spec:
                   properties:
                     connectionString: 'localhost'
                     username: 'Administrator'
-                    bucketName: 'nudb'
+                    bucketName: 'nukv'
                     # NOTE: Do not put passwords in your link config in production!
                     # wasmCloud has secrets support (https://wasmcloud.com/docs/concepts/secrets).
                     #
@@ -56,7 +56,7 @@ spec:
       traits:
         - type: link
           properties:
-            target: nubase
+            target: nukv
             namespace: wasi
             package: http
             interfaces: [incoming-handler]

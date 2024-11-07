@@ -2,7 +2,7 @@
 x-common-variables: &common-variables
       - COUCHBASE_ADMINISTRATOR_USERNAME=Administrator
       - COUCHBASE_ADMINISTRATOR_PASSWORD=password
-      - COUCHBASE_BUCKET=nudb
+      - COUCHBASE_BUCKET=nukv
       - COUCHBASE_CONNECTION_STRING=localhost
 
 services:

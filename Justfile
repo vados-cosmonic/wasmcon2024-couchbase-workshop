@@ -73,10 +73,10 @@ stop-couchbase:
 fetch-wit:
     {{wit-deps}} && {{wit-deps}} update
 
-# Build the `nubase` WebAssembly component
+# Build the `nukv` WebAssembly component
 build: _ensure-tool-wash fetch-wit
-    {{wash}} build -p nubase/wasmcloud.toml
+    {{wash}} build -p nukv/wasmcloud.toml
 
-# Start `wash dev` to dynamically develop the `nubase` WebAssembly component
+# Start `wash dev` to dynamically develop the `nukv` WebAssembly component
 dev: _ensure-tool-wash fetch-wit
-    cd nubase && {{wash}} dev
+    cd nukv && {{wash}} dev

@@ -1,12 +1,12 @@
 package kubecon2024:workshop@0.1.0;
 
-/// NuBase is a WebAssembly native database, implemented in WebAssembly
+/// NuKV is a WebAssembly native database, implemented in WebAssembly
 ///
-/// NuBase aims to implement a subset of Couchbase features which is even simpler
+/// NuKV aims to implement a subset of Couchbase features which is even simpler
 /// for developers to use, from WebAssembly environments, and even in browsers.
 ///
-/// A component that implements this world *is* the NuBase database.
-world nubase {
+/// A component that implements this world *is* the NuKV database.
+world nukv {
 	import wrpc:keyvalue/store@0.2.0-draft;
 	import wrpc:keyvalue/atomics@0.2.0-draft;
 	import wasi:logging/logging@0.1.0-draft;

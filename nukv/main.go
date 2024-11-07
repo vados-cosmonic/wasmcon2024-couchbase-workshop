@@ -1,4 +1,4 @@
-//go:generate go run github.com/bytecodealliance/wasm-tools-go/cmd/wit-bindgen-go generate --world nubase --out gen ../wit
+//go:generate go run github.com/bytecodealliance/wasm-tools-go/cmd/wit-bindgen-go generate --world nukv --out gen ../wit
 package main
 
 import (
@@ -35,7 +35,7 @@ import (
 func main() {}
 
 const (
-	bucket = "nudb"
+	bucket = "nukv"
 )
 
 var getStatusPath = urlpath.New("/api/v1/_status")
@@ -126,7 +126,7 @@ func handleInsertDocumentForKey(w http.ResponseWriter, r *http.Request, key stri
 		return
 	}
 
-	value_res := store.Set("nudb", key, cm.ToList(bytes))
+	value_res := store.Set("nukv", key, cm.ToList(bytes))
 	if value_res.Err() != nil {
 		sendErrorResponse(w, fmt.Sprintf("failed to retrieve value: %s", value_res.Err()))
 		return
