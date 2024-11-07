@@ -1,68 +1,5 @@
 package kubecon2024:workshop@0.1.0;
 
-/// The types below are a stripped down version of the official set in `wasmcloud-provider-couchbase`
-///
-/// If you'd like to see what an enterprise-grade WIT representing the document interface
-/// of Couchbase looks like, see the link below:
-///
-/// https://github.com/couchbaselabs/wasmcloud-provider-couchbase/blob/main/wit/couchbase/document.wit
-
-/// Support CRUD access and modification of documents
-interface nubase-documents {
-  /// ID of a Document
-  ///
-  /// Note that Document IDs are expected to be:
-  ///   - Assigned at the application level
-  ///   - Be valid UTF-8 at the application level
-  ///   - Be no longer than 250 bytes (not characters)
-  type document-id = string;
-
-  /// JSON-formatted string
-  type json-string = string;
-
-  /// WIT cannot currently support passing recursive value types, which means JSON cannot be properly
-  /// represetned as a WIT level type.
-  ///
-  /// What we use instead is a variant with two types:
-  /// - a valid JSON string (which may or may not be an object)
-  /// - an implementer-controlled value which is a valid JSON object (as defined by the implementer)
-  ///
-  /// The implementer-controlled value can be any implementation (usually a more efficient one)
-  /// that can be understood by the implementer. One requirement on this value is that it must be
-  /// possible to convert it to/from a raw JSON string at any time.
-  ///
-  /// An opaque resource that represents a JSON value, and can be efficiently
-  /// manipulated by implementers.
-  variant document {
-    /// A stringified JSON value represented by a resource, often used by callers
-    /// that cannot or do not want to construct an efficient implementer specific JSON value
-    raw(json-string),
-  }
-
-  /// Insert a document with a new ID
-  insert: func(
-    id: document-id,
-    doc: document,
-  ) -> result<document-id, string>;
-
-  /// Retrieve a document by ID
-  get: func(
-    id: document-id,
-  ) -> result<document, string>;
-
-  /// Remove a document by ID
-  remove: func(
-    id: document-id,
-  ) -> result<_, string>;
-
-  /// Create or update (replace) an existing document with the given ID
-  upsert: func(
-    id: document-id,
-    doc: document,
-  ) -> result<document, string>;
-
-}
-
 /// NuBase is a WebAssembly native database, implemented in WebAssembly
 ///
 /// NuBase aims to implement a subset of Couchbase features which is even simpler
@@ -75,22 +12,16 @@ world nubase {
   /// WebAssembly components in Go (TinyGo)
   include wasmcloud:component-go/imports@0.1.0;
 
-  // Makes available the NuBase interface to other components
-  export nubase-documents;
-}
-
-/// HTTP API to NuBase
-///
-/// A component that implements this world *makes available* the NuBase database,
-/// to any client that can speak HTTP
-///
-world nubase-http-api {
-  /// This include pulls in interfaces and WIT that enable easy building of
-  /// WebAssembly components in Go (TinyGo)
-  include wasmcloud:component-go/imports@0.1.0;
-
-  /// Import the NuBase interface which we'll expose over HTTP
-  import nubase-documents;
+  /// Import the couchbase functionality
+  ///
+  /// The types below are a stripped down version of the official set in `wasmcloud-provider-couchbase`
+  ///
+  /// If you'd like to see what an enterprise-grade WIT representing the document interface
+  /// of Couchbase looks like, see the link below:
+  ///
+  /// https://github.com/couchbaselabs/wasmcloud-provider-couchbase/blob/main/wit/couchbase/document.wit
+  ///
+  import wasmcloud:couchbase/document@0.1.0-draft;
 
   /// Exposes a HTTP handler that delivers the NuBase API
   export wasi:http/incoming-handler@0.2.0;
