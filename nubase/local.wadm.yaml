@@ -22,7 +22,9 @@ spec:
           properties:
             namespace: wasi
             package: keyvalue
-            interfaces: [store,atomic]
+            interfaces:
+              - store
+              - atomics
             target:
               name: couchbase
               config:
