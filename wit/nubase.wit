@@ -12,16 +12,18 @@ world nubase {
   /// WebAssembly components in Go (TinyGo)
   include wasmcloud:component-go/imports@0.1.0;
 
-  /// Import the couchbase functionality
+  /// Import wasi:keyvalue functionality, which lets us access KV storage.
   ///
-  /// The types below are a stripped down version of the official set in `wasmcloud-provider-couchbase`
+  /// While wasi:keyvalue is generic,  fully featured `wasmcloud:couchbase` is
+  /// available in `wasmcloud-provider-couchbase`
   ///
-  /// If you'd like to see what an enterprise-grade WIT representing the document interface
-  /// of Couchbase looks like, see the link below:
+  /// If you'd like to see what an enterprise-grade WIT representing the other interfaces
+  /// (ex. document, query, etc) of Couchbase looks like, see the link below:
   ///
   /// https://github.com/couchbaselabs/wasmcloud-provider-couchbase/blob/main/wit/couchbase/document.wit
   ///
-  import wasmcloud:couchbase/document@0.1.0-draft;
+  import wasi:keyvalue/store@0.2.0-draft;
+  import wasi:keyvalue/atomics@0.2.0-draft;
 
   /// Exposes a HTTP handler that delivers the NuBase API
   export wasi:http/incoming-handler@0.2.0;

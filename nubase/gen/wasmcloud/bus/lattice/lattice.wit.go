@@ -9,8 +9,6 @@ import (
 
 // CallTargetInterface represents the imported resource "wasmcloud:bus/lattice@1.0.0#call-target-interface".
 //
-// Interface target. This represents an interface, which can be selected by `set-link-name`.
-//
 //	resource call-target-interface
 type CallTargetInterface cm.Resource
 
@@ -40,12 +38,6 @@ func NewCallTargetInterface(namespace string, package_ string, interface_ string
 }
 
 // SetLinkName represents the imported function "set-link-name".
-//
-// Set an optional link name to use for all interfaces specified. This is advanced
-// functionality only available within wasmcloud and, as such, is exposed here as
-// part of the
-// wasmcloud:bus package. This is used when you are linking multiple of the same interfaces
-// (i.e. a keyvalue implementation for caching and another one for secrets) to a component
 //
 //	set-link-name: func(name: string, interfaces: list<call-target-interface>)
 //

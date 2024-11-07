@@ -14,8 +14,6 @@ import (
 	// convenient handler code (e.g. `wasihttp.HandleFunc`).
 	"go.wasmcloud.dev/component/net/wasihttp"
 
-	// This depdency contains commonly used basic types made available by the Componet Model
-	//
 	// To figure out how to use the types in here, see
 	// - https://github.com/bytecodealliance/go-modules/blob/main/cm/result.go
 	"github.com/bytecodealliance/wasm-tools-go/cm"
@@ -26,10 +24,10 @@ import (
 	// `import`s can be used via the code available here
 	//
 	// To figure out how to use the types in here, see
-	// - gen/wasmcloud/couchbase/document/document.wit.go (generated, present locally)
-	// - gen/wasmcloud/couchbase/types/types.wit.go (generated, present locally)
-	document "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document"
-	types "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types"
+	// - gen/wasi/keyvalue/store/store.wit.go (generated, present locally)
+	// - gen/wasi/keyvalue/atomics/atomics.wit.go (generated, present locally)
+	kv_store "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store"
+	// kv_atomics "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/atomics"
 )
 
 // Since we don't run this program like a CLI, the `main` function is empty.
@@ -37,9 +35,9 @@ import (
 func main() {}
 
 var getStatusPath = urlpath.New("/api/v1/_status")
-var documentsPath = urlpath.New("/api/v1/documents")
-var documentsByIdPath = urlpath.New("/api/v1/documents/:id")
-var documentsLatestPath = urlpath.New("/api/v1/documents/latest")
+var keyByIdPath = urlpath.New("/api/v1/keys/:key")
+var lockPath = urlpath.New("/api/v1/keys/:key/lock")
+var unlockPath = urlpath.New("/api/v1/keys/:key/unlock")
 
 // Entrypoint for the WebAssembly component
 func init() {
@@ -52,38 +50,32 @@ func init() {
 			return
 		}
 
-		// GET /api/v1/documents
-		if _, ok := documentsPath.Match(r.URL.Path); ok && r.Method == http.MethodGet {
-			handleGetAllDocuments(w, r)
+		// GET /api/v1/keys/:key
+		if match, ok := keyByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodGet {
+			handleGetKey(w, r, match.Params["key"])
 			return
 		}
 
-		// GET /api/v1/documents/:id
-		if match, ok := documentsByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodGet {
-			handleGetSingleDocumentById(w, r, match.Params["id"])
+		// POST /api/v1/keys/:key
+		// PUT /api/v1/keys/:key
+		if match, ok := keyByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodPost || r.Method == http.MethodPut {
+			handleInsertDocumentForKey(w, r, match.Params["key"])
 			return
 		}
 
-		// POST /api/v1/documents/:id
-		if match, ok := documentsByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodPost {
-			handleInsertDocument(w, r, match.Params["id"])
+		// POST /api/v1/keys/:key/lock
+		if match, ok := keyByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodPost {
+			handleLockKey(w, r, match.Params["key"])
 			return
 		}
 
-		// DELETE /api/v1/documents/:id
-		if match, ok := documentsByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodDelete {
-			handleDeleteSingleDocumentById(w, r, match.Params["id"])
-			return
-		}
-
-		// GET /api/v1/documents/latest
-		if _, ok := documentsLatestPath.Match(r.URL.Path); ok && r.Method == http.MethodGet {
-			handleGetLatestDocument(w, r)
+		// POST /api/v1/keys/:key/unlock
+		if match, ok := keyByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodPost {
+			handleUnlockKey(w, r, match.Params["key"])
 			return
 		}
 
 		sendErrorResponse(w, fmt.Sprintf("unrecognized path [%s]", r.URL.Path))
-
 	})
 }
 
@@ -92,54 +84,107 @@ func handleStatus(w http.ResponseWriter, r *http.Request) {
 	sendSuccessResponse(w, "ok")
 }
 
-// Handle retrieving all documents in a paginated manner
-func handleGetAllDocuments(w http.ResponseWriter, r *http.Request) {
-	sendSuccessResponse(w, "handleGetAllDocuments")
+// Handle retrieving the document for a given key
+func handleGetKey(w http.ResponseWriter, r *http.Request, key string) {
+	// Open the nudb bucket
+	bucket_res := kv_store.Open("nudb"); if bucket_res.Err() != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to open bucket: %s", bucket_res.Err()))
+		return
+	}
+	bucket := bucket_res.OK()
+
+	// Retrieve the value
+	value_res := bucket.Get(key); if value_res.Err() != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to retrieve value: %s", value_res.Err()))
+		return
+	}
+	value := value_res.OK();
+
+	// if err := res.Err(); err != nil {
+	//	sendErrorResponse(w, fmt.Sprintf("get operation failed: %s", err))
+	//	return
+	// }
+
+	sendSuccessResponse(w, value)
 }
 
-// Handle inserting a single document
-func handleInsertDocument(w http.ResponseWriter, r *http.Request, documentId string) {
-	// Read the HTTP request body
-	doc, err := ioutil.ReadAll(r.Body)
-	if err != nil {
+// Handle inserting a document at a given key
+func handleInsertDocumentForKey(w http.ResponseWriter, r *http.Request, key string) {
+	doc, err := ioutil.ReadAll(r.Body); if err != nil {
 		sendErrorResponse(w, fmt.Sprintf("failed to get request body: %s", err))
 		return
 	}
 	defer r.Body.Close()
 
-	// Retrieve the document, using the generated bindings for `wasmcloud:couchbase/documents.get@0.1.0-draft`
-	res := document.Insert(types.DocumentID(documentId), types.DocumentRaw(types.JSONString(doc)), cm.None[document.DocumentInsertOptions]())
-	if err := res.Err(); err != nil {
-		sendErrorResponse(w, fmt.Sprintf("operation failed: %s", err))
+	// TODO: Ensure the body is valid JSON
+
+	// Convert the body to bytes
+	bytes := cm.ToList(doc)
+
+	// Open the nudb bucket
+	bucket_res := kv_store.Open("nudb"); if bucket_res.Err() != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to open bucket: %s", bucket_res.Err()))
 		return
 	}
+	bucket := bucket_res.OK()
 
-	sendSuccessResponse(w, res.OK())
+	value_res := bucket.Set(key, bytes); if value_res.Err() != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to retrieve value: %s", value_res.Err()))
+		return
+	}
+	value := value_res.OK();
+
+	sendSuccessResponse(w, value)
 }
 
-// Handle retrieving a single document by ID
-func handleGetSingleDocumentById(w http.ResponseWriter, r *http.Request, documentId string) {
-	// Retrieve the document, using the generated bindings for `wasmcloud:couchbase/documents.get@0.1.0-draft`
-	res := document.Get(types.DocumentID(documentId), cm.None[document.DocumentGetOptions]())
-	// TODO: check for error
-
-	sendSuccessResponse(w, res)
+// Handle locking a document at a given key
+func handleLockKey(w http.ResponseWriter, r *http.Request, key string) {
+	sendSuccessResponse(w, "handleLockKey")
 }
 
-// Handle inserting a single document
-func handleInsertSingleDocument(w http.ResponseWriter, r *http.Request) {
-	sendSuccessResponse(w, "handleInsertSingleDocument")
+// Handle unlocking a document at a given key
+func handleUnlockKey(w http.ResponseWriter, r *http.Request, key string) {
+	sendSuccessResponse(w, "handleUnlockKey")
 }
 
-// Handle deleting a single document by ID
-func handleDeleteSingleDocumentById(w http.ResponseWriter, r *http.Request, documentId string) {
-	sendSuccessResponse(w, "handleDeleteSingleDocumentById")
-}
+// // Handle inserting a single document
+// func handleInsertDocument(w http.ResponseWriter, r *http.Request, documentId string) {
+//	// Read the HTTP request body
+//	doc, err := ioutil.ReadAll(r.Body)
+//	if err != nil {
+//		sendErrorResponse(w, fmt.Sprintf("failed to get request body: %s", err))
+//		return
+//	}
+//	defer r.Body.Close()
 
-// Handle getting the latest inserted document
-func handleGetLatestDocument(w http.ResponseWriter, r *http.Request) {
-	sendSuccessResponse(w, "handleGetLatestDocument")
-}
+//	// Retrieve the document, using the generated bindings for `wasmcloud:couchbase/documents.get@0.1.0-draft`
+//	res := document.Insert(types.DocumentID(documentId), types.DocumentRaw(types.JSONString(doc)), cm.None[document.DocumentInsertOptions]())
+//	if err := res.Err(); err != nil {
+//		sendErrorResponse(w, fmt.Sprintf("operation failed: %s", err))
+//		return
+//	}
+
+//	sendSuccessResponse(w, res.OK())
+// }
+
+// // Handle retrieving a single document by ID
+// func handleGetSingleDocumentById(w http.ResponseWriter, r *http.Request, documentId string) {
+//	// Retrieve the document, using the generated bindings for `wasmcloud:couchbase/documents.get@0.1.0-draft`
+//	res := document.Get(types.DocumentID(documentId), cm.None[document.DocumentGetOptions]())
+//	// TODO: check for error
+
+//	sendSuccessResponse(w, res)
+// }
+
+// // Handle deleting a single document by ID
+// func handleDeleteSingleDocumentById(w http.ResponseWriter, r *http.Request, documentId string) {
+//	sendSuccessResponse(w, "handleDeleteSingleDocumentById")
+// }
+
+// // Handle getting the latest inserted document
+// func handleGetLatestDocument(w http.ResponseWriter, r *http.Request) {
+//	sendSuccessResponse(w, "handleGetLatestDocument")
+// }
 
 // Response is a generic struct that holds any data of type T
 type SuccessResponse[T any] struct {

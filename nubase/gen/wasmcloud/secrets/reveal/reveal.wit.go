@@ -20,9 +20,6 @@ type SecretValue = store.SecretValue
 
 // Reveal represents the imported function "reveal".
 //
-// Reveals the value of a secret to the caller.
-// This lets you easily audit your code to discover where secrets are being used.
-//
 //	reveal: func(s: borrow<secret>) -> secret-value
 //
 //go:nosplit

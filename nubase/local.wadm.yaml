@@ -20,9 +20,9 @@ spec:
         # Link the component to the wasmcloud couchbase provider
         - type: link
           properties:
-            namespace: wasmcloud
-            package: couchbase
-            interfaces: [document]
+            namespace: wasi
+            package: keyvalue
+            interfaces: [store,atomic]
             target:
               name: couchbase
               config:
@@ -44,6 +44,7 @@ spec:
       type: capability
       properties:
         image: ghcr.io/vados-cosmonic/provider-wasmcloud-couchbase:v0.1.0-wamscon2024
+        id: couchbase
 
     # This provider enables us to receive HTTP requests
     - name: httpserver

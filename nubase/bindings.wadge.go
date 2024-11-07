@@ -6,8 +6,7 @@ package main
 
 import (
 	github_com__bytecodealliance__wasm___tools___go__cm "github.com/bytecodealliance/wasm-tools-go/cm"
-	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document"
-	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types"
+	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store"
 	go_wasmcloud_dev__component__gen__wasi__clocks__monotonic___clock "go.wasmcloud.dev/component/gen/wasi/clocks/monotonic-clock"
 	go_wasmcloud_dev__component__gen__wasi__http__outgoing___handler "go.wasmcloud.dev/component/gen/wasi/http/outgoing-handler"
 	go_wasmcloud_dev__component__gen__wasi__http__types "go.wasmcloud.dev/component/gen/wasi/http/types"
@@ -1986,592 +1985,24 @@ func wasmimport_OutputStreamResourceDrop(self0 uint32) {
 	return
 }
 
-//go:linkname wasmimport_Get github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Get
-func wasmimport_Get(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.wasmimport_Get_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_BucketDelete github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketDelete
+func wasmimport_BucketDelete(self0 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "get", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(params)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_GetAllReplicas github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_GetAllReplicas
-func wasmimport_GetAllReplicas(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__bytecodealliance__wasm___tools___go__cm.List[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult], github_com__bytecodealliance__wasm___tools___go__cm.List[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult], github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "get-all-replicas", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(id0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&id1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options2)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options3)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options4)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options5)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options6)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options7)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(options8)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options9)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_GetAndLock github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_GetAndLock
-func wasmimport_GetAndLock(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "get-and-lock", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(id0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&id1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options2)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options3)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options4)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options5)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options6)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options7)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options8)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(options9)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options10)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_GetAndTouch github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_GetAndTouch
-func wasmimport_GetAndTouch(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "get-and-touch", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(id0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&id1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options2)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options3)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options4)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options5)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options6)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options7)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options8)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(options9)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options10)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_GetAnyRepliacs github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_GetAnyRepliacs
-func wasmimport_GetAnyRepliacs(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetReplicaResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "get-any-repliacs", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(id0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&id1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options2)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options3)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options4)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options5)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options6)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options7)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(options8)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options9)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_Insert github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Insert
-func wasmimport_Insert(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.wasmimport_Insert_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "insert", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(params)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_Remove github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Remove
-func wasmimport_Remove(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint64, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint32, options8 uint32, options9 uint64, options10 uint64, options11 uint32, options12 *uint8, options13 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "remove", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(id0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&id1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options2)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options3)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options4)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options5)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options6)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options7)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options8)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options9)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options10)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options11)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(options12)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options13)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_Replace github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Replace
-func wasmimport_Replace(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.wasmimport_Replace_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "replace", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(params)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_Touch github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Touch
-func wasmimport_Touch(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "touch", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(id0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&id1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options2)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options3)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options4)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options5)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options6)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options7)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options8)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(options9)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options10)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_Unlock github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Unlock
-func wasmimport_Unlock(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "unlock", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(id0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&id1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options0)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options1)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options2)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options3)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options4)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options5)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options6)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options7)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options8)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(options9)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&options10)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_Upsert github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Upsert
-func wasmimport_Upsert(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.wasmimport_Upsert_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "upsert", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(params)
-			__p.Pin(ptr)
-			return ptr
-		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(result)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_NewDocumentValue github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types.wasmimport_NewDocumentValue
-func wasmimport_NewDocumentValue() (result0 uint32) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/types@0.1.0-draft", "[constructor]document-value", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&result0)
-			__p.Pin(ptr)
-			return ptr
-		}())
-	}); __err != nil {
-		wadge.CurrentErrorHandler()(__err)
-	}
-	return
-}
-
-//go:linkname wasmimport_DocumentValueToString github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueToString
-func wasmimport_DocumentValueToString(self0 uint32, result *string) {
-	var __p runtime.Pinner
-	defer __p.Unpin()
-	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/types@0.1.0-draft", "[method]document-value.to-string", func() unsafe.Pointer {
+		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.delete", func() unsafe.Pointer {
 			ptr := unsafe.Pointer(&self0)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(key0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&key1)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
 			ptr := unsafe.Pointer(result)
 			__p.Pin(ptr)
 			return ptr
@@ -2582,12 +2013,132 @@ func wasmimport_DocumentValueToString(self0 uint32, result *string) {
 	return
 }
 
-//go:linkname wasmimport_DocumentValueResourceDrop github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueResourceDrop
-func wasmimport_DocumentValueResourceDrop(self0 uint32) {
+//go:linkname wasmimport_BucketExists github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketExists
+func wasmimport_BucketExists(self0 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.ErrorShape, bool, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/types@0.1.0-draft", "[resource-drop]document-value", func() unsafe.Pointer {
+		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.exists", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&self0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(key0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&key1)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(result)
+			__p.Pin(ptr)
+			return ptr
+		}())
+	}); __err != nil {
+		wadge.CurrentErrorHandler()(__err)
+	}
+	return
+}
+
+//go:linkname wasmimport_BucketGet github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketGet
+func wasmimport_BucketGet(self0 uint32, key0 *uint8, key1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.OptionListU8Shape, github_com__bytecodealliance__wasm___tools___go__cm.Option[github_com__bytecodealliance__wasm___tools___go__cm.List[uint8]], github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
+	var __p runtime.Pinner
+	defer __p.Unpin()
+	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
+		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.get", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&self0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(key0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&key1)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(result)
+			__p.Pin(ptr)
+			return ptr
+		}())
+	}); __err != nil {
+		wadge.CurrentErrorHandler()(__err)
+	}
+	return
+}
+
+//go:linkname wasmimport_BucketListKeys github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketListKeys
+func wasmimport_BucketListKeys(self0 uint32, cursor0 uint32, cursor1 uint64, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.KeyResponseShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.KeyResponse, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
+	var __p runtime.Pinner
+	defer __p.Unpin()
+	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
+		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.list-keys", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&self0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&cursor0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&cursor1)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(result)
+			__p.Pin(ptr)
+			return ptr
+		}())
+	}); __err != nil {
+		wadge.CurrentErrorHandler()(__err)
+	}
+	return
+}
+
+//go:linkname wasmimport_BucketSet github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketSet
+func wasmimport_BucketSet(self0 uint32, key0 *uint8, key1 uint32, value0 *uint8, value1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
+	var __p runtime.Pinner
+	defer __p.Unpin()
+	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
+		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[method]bucket.set", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&self0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(key0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&key1)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(value0)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(&value1)
+			__p.Pin(ptr)
+			return ptr
+		}(), func() unsafe.Pointer {
+			ptr := unsafe.Pointer(result)
+			__p.Pin(ptr)
+			return ptr
+		}())
+	}); __err != nil {
+		wadge.CurrentErrorHandler()(__err)
+	}
+	return
+}
+
+//go:linkname wasmimport_BucketResourceDrop github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_BucketResourceDrop
+func wasmimport_BucketResourceDrop(self0 uint32) {
+	var __p runtime.Pinner
+	defer __p.Unpin()
+	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
+		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "[resource-drop]bucket", func() unsafe.Pointer {
 			ptr := unsafe.Pointer(&self0)
 			__p.Pin(ptr)
 			return ptr
@@ -2598,17 +2149,17 @@ func wasmimport_DocumentValueResourceDrop(self0 uint32) {
 	return
 }
 
-//go:linkname wasmimport_DocumentValueFromJSON github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueFromJSON
-func wasmimport_DocumentValueFromJSON(json0 *uint8, json1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentValueCreateErrorShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentValue, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentValueCreateError]) {
+//go:linkname wasmimport_Open github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/keyvalue/store.wasmimport_Open
+func wasmimport_Open(identifier0 *uint8, identifier1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.ErrorShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Bucket, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasi__keyvalue__store.Error]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/types@0.1.0-draft", "[static]document-value.from-json", func() unsafe.Pointer {
-			ptr := unsafe.Pointer(json0)
+		return __instance.Call("wasi:keyvalue/store@0.2.0-draft", "open", func() unsafe.Pointer {
+			ptr := unsafe.Pointer(identifier0)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
-			ptr := unsafe.Pointer(&json1)
+			ptr := unsafe.Pointer(&identifier1)
 			__p.Pin(ptr)
 			return ptr
 		}(), func() unsafe.Pointer {
