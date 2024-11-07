@@ -68,9 +68,6 @@ Once `wash dev` has started, you should be able to simply `curl` this component:
 curl localhost:8080/api/v1/_status
 ```
 
-> [!WARN]
-> If using `wash dev`, check your output for the address of the HTTP server -- it may be `localhost:8000`
-
 Once you're sure it's running, you can send JSON payloads over:
 
 ```console
