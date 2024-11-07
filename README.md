@@ -19,7 +19,6 @@ By the end of the workshop, we will:
 - Examine the HTTP & Couchbase native WebAssembly Interface Type ("WIT") interfaces
 - Build a HTTP API [WebAssembly-native database component][wasmcloud-docs-component], powered by [Couchbase][couchbase]
 - Run your database implementation locally with [wasmCloud][wasmcloud]
-- Run your database in the browser, against a pre-existing test suite
 
 [wasmcloud-docs-component]: https://wasmcloud.com/docs/concepts/components
 [wasmCloud]: https://wasmcloud.com
