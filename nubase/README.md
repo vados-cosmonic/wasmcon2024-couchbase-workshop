@@ -10,6 +10,7 @@ by exporting the [WASI][wasi] standard [`wasi:http/incoming-handler`][wasi-http]
 [wit]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
 [wasi-http]: https://github.com/WebAssembly/wasi-http
 [wasm-components]: https://component-model.bytecodealliance.org/
+[wasi]: https://wasi.dev
 
 ### 📚 NuBase HTTP API
 
