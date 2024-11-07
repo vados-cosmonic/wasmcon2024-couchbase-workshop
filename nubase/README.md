@@ -1,8 +1,8 @@
-# ✨ NuDB
+# ✨ NuBase
 
-This component implements a HTTP-API driven WebAssembly-native Database powered by [Couchbase][couchbase].
+This component implements a WebAssembly-native database called NuBase [Couchbase][couchbase].
 
-The interface for this database is written in the [WebAssembly Interface Types ("WIT")][wit] (see [`nudb.wit`](../wit/nudb.wit)).
+The interface for this database is written in the [WebAssembly Interface Types ("WIT")][wit] (see [`nubase.wit`](../wit/nubase.wit)).
 
 Importantly, the interface `import`s `wasmcloud:couchbase` for access to Couchbase, and exports [`wasi:http/incoming-handler`][wasi-http],
 which enables providing an interface driven by HTTP.
@@ -13,9 +13,9 @@ which enables providing an interface driven by HTTP.
 [wit]: https://github.com/WebAssembly/component-model/blob/main/design/mvp/WIT.md
 [wasi-http]: https://github.com/WebAssembly/wasi-http
 
-### 📚 NuDB API
+### 📚 NuBase API
 
-NuDB's API is simple, maximizing for developer UX:
+NuBase's API is simple, maximizing for developer UX, building on top of keyvalue provided by [Couchbase][couchbase]:
 
 | API endpoint                   | Description                             |
 |--------------------------------|-----------------------------------------|

@@ -1,4 +1,4 @@
-//go:generate go run github.com/bytecodealliance/wasm-tools-go/cmd/wit-bindgen-go generate --world nudb --out gen ../wit
+//go:generate go run github.com/bytecodealliance/wasm-tools-go/cmd/wit-bindgen-go generate --world nubase --out gen ../wit
 package main
 
 import (
