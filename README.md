@@ -78,7 +78,7 @@ To run manually, ensure that you have the following tools installed:
 You can easily check which tools are not installed by running:
 
 ```console
-just setup-manual
+just check
 ```
 
 Once you have all required tools installed, you can build the project by running:

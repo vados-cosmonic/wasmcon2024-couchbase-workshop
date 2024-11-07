@@ -42,7 +42,7 @@ couchbase_docker_image := env_var_or_default("COUCHBASE_DOCKER_IMAGE", "couchbas
 ###############
 
 # Check for required tools
-setup-manual: _ensure-tool-wash _ensure-tool-docker _ensure-tool-tinygo _ensure-tool-go
+check: _ensure-tool-wash _ensure-tool-docker _ensure-tool-tinygo _ensure-tool-go
 
 # Start the local devcontainer
 start-devcontainer: _ensure-tool-devcontainer
