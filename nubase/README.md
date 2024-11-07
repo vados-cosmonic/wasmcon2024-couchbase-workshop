@@ -72,13 +72,13 @@ curl localhost:8080/api/v1/_status
 Once you're sure it's running, you can send JSON payloads over:
 
 ```console
-curl localhost:8080/api/v1/documents --data '{"example": "document"}'
+curl localhost:8080/api/v1/documents/1 --data '{"example": "document"}'
 ```
 
-You should get back the ID of the document you inserted -- you can feed that ID into another CURL to retrieve the document:
+You should get back the ID of the document you inserted -- you can feed that ID into another CURL to retrieve the document we just wrote (by ID):
 
 ```console
-curl localhost:8080/api/v1/documents/<id>
+curl localhost:8080/api/v1/documents/1
 ```
 
 [wasmcloud-docs-provider]: https://wasmcloud.com/docs/concepts/providers
