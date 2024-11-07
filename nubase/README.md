@@ -27,7 +27,7 @@ power of Couchbase underneath:
 
 **The implementation for this component is partially finished, but you'll have to write the rest!**.
 
-## 📦 Prerequisites
+## 📦 Dependencies
 
 | Tool     | Description                                                             |
 |----------|-------------------------------------------------------------------------|
@@ -41,6 +41,15 @@ power of Couchbase underneath:
 [wash]: https://wasmcloud.com/docs/ecosystem/wash/
 
 ## 👟 Quickstart
+
+### Setup
+
+Once you have the relevant dependencies installed, first run `go mod download`. This will install relevant
+golang tooling (see `tools.go`) for working with this repository.
+
+```console
+go mod download
+```
 
 ### Development
 
