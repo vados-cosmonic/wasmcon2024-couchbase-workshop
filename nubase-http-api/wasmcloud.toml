@@ -1,9 +1,0 @@
-name = "nubase"
-language = "tinygo"
-type = "component"
-version = "0.1.0"
-
-[component]
-wit_world = "nubase"
-wasm_target = "wasm32-wasip2"
-destination = "build/nubase_s.wasm"

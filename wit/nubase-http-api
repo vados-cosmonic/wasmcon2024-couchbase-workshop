@@ -1,0 +1,16 @@
+package kubecon2024:workshop@0.1.0;
+
+/// HTTP API to NuBase
+///
+/// A component that implements this world *makes available* the NuBase database,
+/// to any client that can speak HTTP
+///
+world nubase-http-api {
+  /// This include pulls in interfaces and WIT that enable easy building of
+  /// WebAssembly components in Go (TinyGo)
+  include wasmcloud:component-go/imports@0.1.0;
+
+  /// Import the NuBase interface which we'll expose over HTTP
+  import nubase-documents;
+
+}
