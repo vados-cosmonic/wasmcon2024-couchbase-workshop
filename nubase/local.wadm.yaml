@@ -30,7 +30,7 @@ spec:
                   properties:
                     connectionString: 'localhost'
                     username: 'Administrator'
-                    bucketName: 'test'
+                    bucketName: 'nubase'
                     # NOTE: Do not put passwords in your link config in production!
                     # wasmCloud has secrets support (https://wasmcloud.com/docs/concepts/secrets).
                     #
@@ -44,6 +44,7 @@ spec:
       type: capability
       properties:
         image: ghcr.io/vados-cosmonic/provider-wasmcloud-couchbase:v0.1.0-wamscon2024
+        id: couchbase
 
     # This provider enables us to receive HTTP requests
     - name: httpserver
