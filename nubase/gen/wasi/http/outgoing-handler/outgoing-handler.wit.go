@@ -8,7 +8,7 @@ package outgoinghandler
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/http/types"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/http/types"
 )
 
 // OutgoingRequest represents the imported type alias "wasi:http/outgoing-handler@0.2.0#outgoing-request".

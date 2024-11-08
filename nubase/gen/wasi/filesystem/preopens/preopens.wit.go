@@ -5,7 +5,7 @@ package preopens
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/filesystem/types"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/filesystem/types"
 )
 
 // Descriptor represents the imported type alias "wasi:filesystem/preopens@0.2.0#descriptor".

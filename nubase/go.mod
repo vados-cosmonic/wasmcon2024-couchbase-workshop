@@ -1,4 +1,4 @@
-module github.com/vados-cosmonic/wasmcon2024-couchbase-workshop
+module github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase
 
 go 1.23.0
 

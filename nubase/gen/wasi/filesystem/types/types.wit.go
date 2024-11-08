@@ -30,8 +30,8 @@ package types
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	wallclock "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/clocks/wall-clock"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/streams"
+	wallclock "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/clocks/wall-clock"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/streams"
 )
 
 // InputStream represents the imported type alias "wasi:filesystem/types@0.2.0#input-stream".

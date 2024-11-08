@@ -7,7 +7,7 @@
 package incominghandler
 
 import (
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/http/types"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/http/types"
 )
 
 // IncomingRequest represents the exported type alias "wasi:http/incoming-handler@0.2.0#incoming-request".

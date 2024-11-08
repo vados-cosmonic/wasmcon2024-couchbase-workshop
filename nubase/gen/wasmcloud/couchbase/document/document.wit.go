@@ -9,7 +9,7 @@ package document
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/types"
 )
 
 // Document represents the imported type alias "wasmcloud:couchbase/document@0.1.0-draft#document".

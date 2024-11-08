@@ -7,7 +7,7 @@ package instancenetwork
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/sockets/network"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/sockets/network"
 )
 
 // Network represents the imported type alias "wasi:sockets/instance-network@0.2.0#network".

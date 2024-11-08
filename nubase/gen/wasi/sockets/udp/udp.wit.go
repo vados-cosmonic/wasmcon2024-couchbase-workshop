@@ -5,8 +5,8 @@ package udp
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/poll"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/sockets/network"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/poll"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/sockets/network"
 )
 
 // Pollable represents the imported type alias "wasi:sockets/udp@0.2.0#pollable".

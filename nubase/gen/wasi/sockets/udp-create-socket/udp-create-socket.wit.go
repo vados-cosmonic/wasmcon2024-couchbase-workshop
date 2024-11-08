@@ -5,8 +5,8 @@ package udpcreatesocket
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/sockets/network"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/sockets/udp"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/sockets/network"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/sockets/udp"
 )
 
 // Network represents the imported type alias "wasi:sockets/udp-create-socket@0.2.0#network".

@@ -28,8 +28,8 @@ import (
 	// To figure out how to use the types in here, see
 	// - gen/wasmcloud/couchbase/document/document.wit.go (generated, present locally)
 	// - gen/wasmcloud/couchbase/types/types.wit.go (generated, present locally)
-	document "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document"
-	types "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types"
+	document "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document"
+	types "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/types"
 )
 
 // Since we don't run this program like a CLI, the `main` function is empty.

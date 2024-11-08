@@ -5,8 +5,8 @@ package tcpcreatesocket
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/sockets/network"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/sockets/tcp"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/sockets/network"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/sockets/tcp"
 )
 
 // Network represents the imported type alias "wasi:sockets/tcp-create-socket@0.2.0#network".

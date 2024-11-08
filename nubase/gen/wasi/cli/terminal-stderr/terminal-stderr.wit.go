@@ -8,7 +8,7 @@ package terminalstderr
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	terminaloutput "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/cli/terminal-output"
+	terminaloutput "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/cli/terminal-output"
 )
 
 // TerminalOutput represents the imported type alias "wasi:cli/terminal-stderr@0.2.0#terminal-output".

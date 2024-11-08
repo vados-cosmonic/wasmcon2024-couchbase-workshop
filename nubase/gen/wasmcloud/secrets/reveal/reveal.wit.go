@@ -5,7 +5,7 @@ package reveal
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/secrets/store"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/secrets/store"
 )
 
 // Secret represents the imported type alias "wasmcloud:secrets/reveal@0.1.0-draft#secret".

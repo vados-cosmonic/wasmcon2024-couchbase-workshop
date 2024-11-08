@@ -6,8 +6,8 @@ package main
 
 import (
 	github_com__bytecodealliance__wasm___tools___go__cm "github.com/bytecodealliance/wasm-tools-go/cm"
-	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document"
-	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types"
+	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document"
+	github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/types"
 	go_wasmcloud_dev__component__gen__wasi__clocks__monotonic___clock "go.wasmcloud.dev/component/gen/wasi/clocks/monotonic-clock"
 	go_wasmcloud_dev__component__gen__wasi__http__outgoing___handler "go.wasmcloud.dev/component/gen/wasi/http/outgoing-handler"
 	go_wasmcloud_dev__component__gen__wasi__http__types "go.wasmcloud.dev/component/gen/wasi/http/types"
@@ -1986,8 +1986,8 @@ func wasmimport_OutputStreamResourceDrop(self0 uint32) {
 	return
 }
 
-//go:linkname wasmimport_Get github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Get
-func wasmimport_Get(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.wasmimport_Get_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_Get github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_Get
+func wasmimport_Get(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.wasmimport_Get_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2006,8 +2006,8 @@ func wasmimport_Get(params *github_com__vados___cosmonic__wasmcon2024___couchbas
 	return
 }
 
-//go:linkname wasmimport_GetAllReplicas github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_GetAllReplicas
-func wasmimport_GetAllReplicas(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__bytecodealliance__wasm___tools___go__cm.List[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult], github_com__bytecodealliance__wasm___tools___go__cm.List[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult], github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_GetAllReplicas github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_GetAllReplicas
+func wasmimport_GetAllReplicas(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__bytecodealliance__wasm___tools___go__cm.List[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult], github_com__bytecodealliance__wasm___tools___go__cm.List[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult], github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2070,8 +2070,8 @@ func wasmimport_GetAllReplicas(id0 *uint8, id1 uint32, options0 uint32, options1
 	return
 }
 
-//go:linkname wasmimport_GetAndLock github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_GetAndLock
-func wasmimport_GetAndLock(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_GetAndLock github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_GetAndLock
+func wasmimport_GetAndLock(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2138,8 +2138,8 @@ func wasmimport_GetAndLock(id0 *uint8, id1 uint32, options0 uint32, options1 uin
 	return
 }
 
-//go:linkname wasmimport_GetAndTouch github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_GetAndTouch
-func wasmimport_GetAndTouch(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_GetAndTouch github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_GetAndTouch
+func wasmimport_GetAndTouch(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2206,8 +2206,8 @@ func wasmimport_GetAndTouch(id0 *uint8, id1 uint32, options0 uint32, options1 ui
 	return
 }
 
-//go:linkname wasmimport_GetAnyRepliacs github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_GetAnyRepliacs
-func wasmimport_GetAnyRepliacs(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetReplicaResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_GetAnyRepliacs github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_GetAnyRepliacs
+func wasmimport_GetAnyRepliacs(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetReplicaResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2270,8 +2270,8 @@ func wasmimport_GetAnyRepliacs(id0 *uint8, id1 uint32, options0 uint32, options1
 	return
 }
 
-//go:linkname wasmimport_Insert github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Insert
-func wasmimport_Insert(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.wasmimport_Insert_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_Insert github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_Insert
+func wasmimport_Insert(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.wasmimport_Insert_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2290,8 +2290,8 @@ func wasmimport_Insert(params *github_com__vados___cosmonic__wasmcon2024___couch
 	return
 }
 
-//go:linkname wasmimport_Remove github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Remove
-func wasmimport_Remove(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint64, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint32, options8 uint32, options9 uint64, options10 uint64, options11 uint32, options12 *uint8, options13 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_Remove github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_Remove
+func wasmimport_Remove(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint64, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint32, options8 uint32, options9 uint64, options10 uint64, options11 uint32, options12 *uint8, options13 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2370,8 +2370,8 @@ func wasmimport_Remove(id0 *uint8, id1 uint32, options0 uint32, options1 uint64,
 	return
 }
 
-//go:linkname wasmimport_Replace github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Replace
-func wasmimport_Replace(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.wasmimport_Replace_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_Replace github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_Replace
+func wasmimport_Replace(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.wasmimport_Replace_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2390,8 +2390,8 @@ func wasmimport_Replace(params *github_com__vados___cosmonic__wasmcon2024___couc
 	return
 }
 
-//go:linkname wasmimport_Touch github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Touch
-func wasmimport_Touch(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_Touch github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_Touch
+func wasmimport_Touch(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2458,8 +2458,8 @@ func wasmimport_Touch(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, 
 	return
 }
 
-//go:linkname wasmimport_Unlock github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Unlock
-func wasmimport_Unlock(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_Unlock github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_Unlock
+func wasmimport_Unlock(id0 *uint8, id1 uint32, options0 uint32, options1 uint64, options2 uint32, options3 uint64, options4 uint32, options5 uint32, options6 uint64, options7 uint64, options8 uint32, options9 *uint8, options10 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError, struct{}, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2526,8 +2526,8 @@ func wasmimport_Unlock(id0 *uint8, id1 uint32, options0 uint32, options1 uint64,
 	return
 }
 
-//go:linkname wasmimport_Upsert github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/document.wasmimport_Upsert
-func wasmimport_Upsert(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.wasmimport_Upsert_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_Upsert github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_Upsert
+func wasmimport_Upsert(params *github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.wasmimport_Upsert_params, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.MutationMetadataShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.MutationMetadata, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
@@ -2546,7 +2546,7 @@ func wasmimport_Upsert(params *github_com__vados___cosmonic__wasmcon2024___couch
 	return
 }
 
-//go:linkname wasmimport_NewDocumentValue github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types.wasmimport_NewDocumentValue
+//go:linkname wasmimport_NewDocumentValue github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/types.wasmimport_NewDocumentValue
 func wasmimport_NewDocumentValue() (result0 uint32) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
@@ -2562,7 +2562,7 @@ func wasmimport_NewDocumentValue() (result0 uint32) {
 	return
 }
 
-//go:linkname wasmimport_DocumentValueToString github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueToString
+//go:linkname wasmimport_DocumentValueToString github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueToString
 func wasmimport_DocumentValueToString(self0 uint32, result *string) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
@@ -2582,7 +2582,7 @@ func wasmimport_DocumentValueToString(self0 uint32, result *string) {
 	return
 }
 
-//go:linkname wasmimport_DocumentValueResourceDrop github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueResourceDrop
+//go:linkname wasmimport_DocumentValueResourceDrop github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueResourceDrop
 func wasmimport_DocumentValueResourceDrop(self0 uint32) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
@@ -2598,8 +2598,8 @@ func wasmimport_DocumentValueResourceDrop(self0 uint32) {
 	return
 }
 
-//go:linkname wasmimport_DocumentValueFromJSON github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueFromJSON
-func wasmimport_DocumentValueFromJSON(json0 *uint8, json1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentValueCreateErrorShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentValue, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__gen__wasmcloud__couchbase__types.DocumentValueCreateError]) {
+//go:linkname wasmimport_DocumentValueFromJSON github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/types.wasmimport_DocumentValueFromJSON
+func wasmimport_DocumentValueFromJSON(json0 *uint8, json1 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentValueCreateErrorShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentValue, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentValueCreateError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {

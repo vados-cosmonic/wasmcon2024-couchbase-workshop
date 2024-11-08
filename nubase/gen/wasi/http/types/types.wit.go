@@ -9,10 +9,10 @@ package types
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	monotonicclock "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/clocks/monotonic-clock"
-	ioerror "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/error"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/poll"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/streams"
+	monotonicclock "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/clocks/monotonic-clock"
+	ioerror "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/error"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/poll"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/streams"
 )
 
 // Duration represents the type alias "wasi:http/types@0.2.0#duration".

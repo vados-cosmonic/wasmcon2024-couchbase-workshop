@@ -11,8 +11,8 @@ package streams
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	ioerror "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/error"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/poll"
+	ioerror "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/error"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/poll"
 )
 
 // Error represents the imported type alias "wasi:io/streams@0.2.0#error".

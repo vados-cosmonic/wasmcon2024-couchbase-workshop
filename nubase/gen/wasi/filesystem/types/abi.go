@@ -4,7 +4,7 @@ package types
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	wallclock "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/clocks/wall-clock"
+	wallclock "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/clocks/wall-clock"
 	"unsafe"
 )
 

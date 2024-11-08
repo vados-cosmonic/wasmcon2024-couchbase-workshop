@@ -3,13 +3,13 @@
 package main
 
 import (
-	"bytes"
 	"io"
 	"log"
 	"log/slog"
 	"net/http"
 	"os"
 	"testing"
+	"encoding/json"
 
 	incominghandler "go.wasmcloud.dev/component/gen/wasi/http/incoming-handler"
 	"go.wasmcloud.dev/wadge"
@@ -30,25 +30,33 @@ func init() {
 
 func TestIncomingHandler(t *testing.T) {
 	wadge.RunTest(t, func() {
-		req, err := http.NewRequest("", "/", nil)
+		req, err := http.NewRequest("", "/api/_status", nil)
 		if err != nil {
 			t.Fatalf("failed to create new HTTP request: %s", err)
 		}
+
 		resp, err := wadgehttp.HandleIncomingRequest(incominghandler.Exports.Handle, req)
 		if err != nil {
 			t.Fatalf("failed to handle incoming HTTP request: %s", err)
 		}
+
 		if want, got := http.StatusOK, resp.StatusCode; want != got {
 			t.Fatalf("unexpected status code: want %d, got %d", want, got)
 		}
+
 		buf, err := io.ReadAll(resp.Body)
 		if err != nil {
 			t.Fatalf("failed to read HTTP response body: %s", err)
 		}
 		defer resp.Body.Close()
 
-		if want, got := []byte("Hello from Go!\n"), buf; !bytes.Equal(want, got) {
-			t.Fatalf("unexpected response body: want %q, got %q", want, got)
+		var sr SuccessResponse[string]
+		err = json.Unmarshal(buf, &sr); if err != nil {
+			t.Fatalf("failed to decode json response: %s", err)
+		}
+
+		if sr.Status != "success" || sr.Data != "ok"{
+			t.Fatalf("unexpected response body: %q", sr)
 		}
 	})
 }

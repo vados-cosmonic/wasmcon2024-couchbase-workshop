@@ -5,7 +5,7 @@ package stdin
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/streams"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/streams"
 )
 
 // InputStream represents the imported type alias "wasi:cli/stdin@0.2.0#input-stream".

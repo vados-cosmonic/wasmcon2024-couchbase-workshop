@@ -5,10 +5,10 @@ package tcp
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	monotonicclock "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/clocks/monotonic-clock"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/poll"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/io/streams"
-	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/sockets/network"
+	monotonicclock "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/clocks/monotonic-clock"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/poll"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/io/streams"
+	"github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/sockets/network"
 )
 
 // InputStream represents the imported type alias "wasi:sockets/tcp@0.2.0#input-stream".

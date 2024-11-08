@@ -8,7 +8,7 @@ package terminalstdin
 
 import (
 	"github.com/bytecodealliance/wasm-tools-go/cm"
-	terminalinput "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/gen/wasi/cli/terminal-input"
+	terminalinput "github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasi/cli/terminal-input"
 )
 
 // TerminalInput represents the imported type alias "wasi:cli/terminal-stdin@0.2.0#terminal-input".
