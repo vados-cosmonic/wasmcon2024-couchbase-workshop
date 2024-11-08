@@ -251,7 +251,7 @@ interface document {
   ) -> result<document-get-result, document-error>;
 
   /// Retrieve a document by ID from any replica
-  get-any-repliacs: func(
+  get-any-replicas: func(
     id: document-id,
     options: option<document-get-any-replica-options>,
   ) -> result<document-get-replica-result, document-error>;

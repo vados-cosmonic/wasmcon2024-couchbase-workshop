@@ -2206,12 +2206,12 @@ func wasmimport_GetAndTouch(id0 *uint8, id1 uint32, options0 uint32, options1 ui
 	return
 }
 
-//go:linkname wasmimport_GetAnyRepliacs github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_GetAnyRepliacs
-func wasmimport_GetAnyRepliacs(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetReplicaResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
+//go:linkname wasmimport_GetAnyReplicas github.com/vados-cosmonic/wasmcon2024-couchbase-workshop/nubase/gen/wasmcloud/couchbase/document.wasmimport_GetAnyReplicas
+func wasmimport_GetAnyReplicas(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *github_com__bytecodealliance__wasm___tools___go__cm.Result[github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetReplicaResultShape, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__document.DocumentGetReplicaResult, github_com__vados___cosmonic__wasmcon2024___couchbase___workshop__nubase__gen__wasmcloud__couchbase__types.DocumentError]) {
 	var __p runtime.Pinner
 	defer __p.Unpin()
 	if __err := wadge.WithCurrentInstance(func(__instance *wadge.Instance) error {
-		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "get-any-repliacs", func() unsafe.Pointer {
+		return __instance.Call("wasmcloud:couchbase/document@0.1.0-draft", "get-any-replicas", func() unsafe.Pointer {
 			ptr := unsafe.Pointer(id0)
 			__p.Pin(ptr)
 			return ptr

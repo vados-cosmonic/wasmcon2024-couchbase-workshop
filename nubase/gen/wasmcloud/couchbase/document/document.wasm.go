@@ -24,9 +24,9 @@ func wasmimport_Upsert(params *wasmimport_Upsert_params, result *cm.Result[Mutat
 //go:noescape
 func wasmimport_Get(params *wasmimport_Get_params, result *cm.Result[DocumentGetResultShape, DocumentGetResult, DocumentError])
 
-//go:wasmimport wasmcloud:couchbase/document@0.1.0-draft get-any-repliacs
+//go:wasmimport wasmcloud:couchbase/document@0.1.0-draft get-any-replicas
 //go:noescape
-func wasmimport_GetAnyRepliacs(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *cm.Result[DocumentGetReplicaResultShape, DocumentGetReplicaResult, DocumentError])
+func wasmimport_GetAnyReplicas(id0 *uint8, id1 uint32, options0 uint32, options1 uint32, options2 uint64, options3 uint32, options4 uint32, options5 uint64, options6 uint64, options7 uint32, options8 *uint8, options9 uint32, result *cm.Result[DocumentGetReplicaResultShape, DocumentGetReplicaResult, DocumentError])
 
 //go:wasmimport wasmcloud:couchbase/document@0.1.0-draft get-all-replicas
 //go:noescape

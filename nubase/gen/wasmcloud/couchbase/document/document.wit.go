@@ -615,18 +615,18 @@ type wasmimport_Get_params struct {
 	options cm.Option[DocumentGetOptions]
 }
 
-// GetAnyRepliacs represents the imported function "get-any-repliacs".
+// GetAnyReplicas represents the imported function "get-any-replicas".
 //
 // Retrieve a document by ID from any replica
 //
-//	get-any-repliacs: func(id: document-id, options: option<document-get-any-replica-options>)
+//	get-any-replicas: func(id: document-id, options: option<document-get-any-replica-options>)
 //	-> result<document-get-replica-result, document-error>
 //
 //go:nosplit
-func GetAnyRepliacs(id DocumentID, options cm.Option[DocumentGetAnyReplicaOptions]) (result cm.Result[DocumentGetReplicaResultShape, DocumentGetReplicaResult, DocumentError]) {
+func GetAnyReplicas(id DocumentID, options cm.Option[DocumentGetAnyReplicaOptions]) (result cm.Result[DocumentGetReplicaResultShape, DocumentGetReplicaResult, DocumentError]) {
 	id0, id1 := cm.LowerString(id)
 	options0, options1, options2, options3, options4, options5, options6, options7, options8, options9 := lower_OptionDocumentGetAnyReplicaOptions(options)
-	wasmimport_GetAnyRepliacs((*uint8)(id0), (uint32)(id1), (uint32)(options0), (uint32)(options1), (uint64)(options2), (uint32)(options3), (uint32)(options4), (uint64)(options5), (uint64)(options6), (uint32)(options7), (*uint8)(options8), (uint32)(options9), &result)
+	wasmimport_GetAnyReplicas((*uint8)(id0), (uint32)(id1), (uint32)(options0), (uint32)(options1), (uint64)(options2), (uint32)(options3), (uint32)(options4), (uint64)(options5), (uint64)(options6), (uint32)(options7), (*uint8)(options8), (uint32)(options9), &result)
 	return
 }
 
