@@ -6,8 +6,11 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"time"
 
 	"github.com/ucarion/urlpath"
+
+	jsonpatch "github.com/evanphx/json-patch"
 
 	// This dependency enables ergonomic HTTP handlers in Golang,
 	// it has `wasi:http` wrappers and goodies in it that enables us to write
@@ -37,9 +40,52 @@ import (
 func main() {}
 
 var getStatusPath = urlpath.New("/api/v1/_status")
-var documentsPath = urlpath.New("/api/v1/documents")
 var documentsByIdPath = urlpath.New("/api/v1/documents/:id")
-var documentsLatestPath = urlpath.New("/api/v1/documents/latest")
+var upsertByIdPath = urlpath.New("/api/v1/documents/:id/upsert")
+var batchInsertPath = urlpath.New("/api/v1/batch/insert")
+var batchUpsertPath = urlpath.New("/api/v1/batch/upsert")
+
+// Batch of documents to be used for some operation
+type DocmentBatch struct {
+	// Documents that should be inserted as part of the batch
+	Docs map[string]interface{} `json:"docs"`
+}
+
+// Type that represents a JSON patch operation
+type JSONPatchOp struct {
+	Op    string      `json:"op"`              // Operation type (e.g., "add", "remove", "replace", "move", "copy", "test")
+	Path  string      `json:"path"`            // Target path for the operation
+	Value interface{} `json:"value,omitempty"` // The value to add, replace, or test (optional depending on the operation)
+	From  string      `json:"from,omitempty"`  // Source path for "move" or "copy" operations (optional)
+}
+
+// Upsert specification for a single document
+type Upsert struct {
+	// Document ID
+	DocID string `json:"docId"`
+	// Documents that should be inserted as part of the batch
+	Patches []JSONPatchOp `json:"patches",omitempty`
+	// Object to insert if the document does not exist
+	Insert map[string]interface{} `json:"insert"`
+}
+
+// Multiple upserts to be performed
+type UpsertBatch struct {
+	Upserts []Upsert `json:"upserts"`
+}
+
+// Multiple inserts to be performed
+type InsertBatch struct {
+	Docs []BatchInsert `json:"docs"`
+}
+
+// Upsert specification for a single document
+type BatchInsert struct {
+	// Document ID
+	DocID string `json:"docId"`
+	// Object to insert
+	Doc map[string]interface{} `json:"doc"`
+}
 
 // Entrypoint for the WebAssembly component
 func init() {
@@ -49,12 +95,6 @@ func init() {
 		// GET /api/v1/_status
 		if _, ok := getStatusPath.Match(r.URL.Path); ok && r.Method == http.MethodGet {
 			handleStatus(w, r)
-			return
-		}
-
-		// GET /api/v1/documents
-		if _, ok := documentsPath.Match(r.URL.Path); ok && r.Method == http.MethodGet {
-			handleGetAllDocuments(w, r)
 			return
 		}
 
@@ -76,9 +116,21 @@ func init() {
 			return
 		}
 
-		// GET /api/v1/documents/latest
-		if _, ok := documentsLatestPath.Match(r.URL.Path); ok && r.Method == http.MethodGet {
-			handleGetLatestDocument(w, r)
+		// POST /api/v1/documents/:id/upsert
+		if match, ok := upsertByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodPost {
+			handleUpsertDocument(w, r, match.Params["id"])
+			return
+		}
+
+		// POST /api/v1/batch/insert
+		if _, ok := batchInsertPath.Match(r.URL.Path); ok && r.Method == http.MethodPost {
+			handleBatchInsert(w, r)
+			return
+		}
+
+		// POST /api/v1/batch/upsert
+		if _, ok := documentsByIdPath.Match(r.URL.Path); ok && r.Method == http.MethodPost {
+			handleBatchUpsert(w, r)
 			return
 		}
 
@@ -87,14 +139,13 @@ func init() {
 	})
 }
 
+/////////////////////////////
+// Handler Implementations //
+/////////////////////////////
+
 // Handle the status endpoint
 func handleStatus(w http.ResponseWriter, r *http.Request) {
 	sendSuccessResponse(w, "ok")
-}
-
-// Handle retrieving all documents in a paginated manner
-func handleGetAllDocuments(w http.ResponseWriter, r *http.Request) {
-	sendSuccessResponse(w, "handleGetAllDocuments")
 }
 
 // Handle inserting a single document
@@ -109,8 +160,8 @@ func handleInsertDocument(w http.ResponseWriter, r *http.Request, documentId str
 
 	// Retrieve the document, using the generated bindings for `wasmcloud:couchbase/documents.get@0.1.0-draft`
 	res := document.Insert(types.DocumentID(documentId), types.DocumentRaw(types.JSONString(doc)), cm.None[document.DocumentInsertOptions]())
-	if err := res.Err(); err != nil {
-		sendErrorResponse(w, fmt.Sprintf("operation failed: %s", err))
+	if res.IsErr() {
+		sendErrorResponse(w, fmt.Sprintf("insert operation failed: %s", res.Err()))
 		return
 	}
 
@@ -121,25 +172,183 @@ func handleInsertDocument(w http.ResponseWriter, r *http.Request, documentId str
 func handleGetSingleDocumentById(w http.ResponseWriter, r *http.Request, documentId string) {
 	// Retrieve the document, using the generated bindings for `wasmcloud:couchbase/documents.get@0.1.0-draft`
 	res := document.Get(types.DocumentID(documentId), cm.None[document.DocumentGetOptions]())
-	// TODO: check for error
+	if res.IsErr() {
+		sendErrorResponse(w, fmt.Sprintf("get operation failed: %s", res.Err()))
+		return
+	}
+	doc := res.OK()
 
-	sendSuccessResponse(w, res)
-}
+	var parsed interface{}
+	err := json.Unmarshal([]byte(*doc.Document.Raw()), &parsed)
+	if err != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to unmarshal document: %s", err))
+		return
+	}
 
-// Handle inserting a single document
-func handleInsertSingleDocument(w http.ResponseWriter, r *http.Request) {
-	sendSuccessResponse(w, "handleInsertSingleDocument")
+	sendSuccessResponse(w, parsed)
 }
 
 // Handle deleting a single document by ID
 func handleDeleteSingleDocumentById(w http.ResponseWriter, r *http.Request, documentId string) {
-	sendSuccessResponse(w, "handleDeleteSingleDocumentById")
+	// Delete the document, using the generated bindings for `wasmcloud:couchbase/documents.delete@0.1.0-draft`
+	res := document.Remove(types.DocumentID(documentId), cm.None[document.DocumentRemoveOptions]())
+	if err := res.Err(); err != nil {
+		sendErrorResponse(w, fmt.Sprintf("delete operation failed: %s", err))
+		return
+	}
+
+	sendSuccessResponse(w, documentId)
 }
 
-// Handle getting the latest inserted document
-func handleGetLatestDocument(w http.ResponseWriter, r *http.Request) {
-	sendSuccessResponse(w, "handleGetLatestDocument")
+// Handle inserting a batch of documents
+func handleBatchInsert(w http.ResponseWriter, r *http.Request) {
+	// Read the HTTP request body
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to get request body: %s", err))
+		return
+	}
+	defer r.Body.Close()
+
+	// Parse the insert batch
+	var batch InsertBatch
+	jsonErr := json.Unmarshal(body, &batch)
+	if err != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to unmarshal request body JSON: %s", jsonErr))
+		return
+	}
+
+	// NOTE: This is *not* an efficient insert, but is easy for understanding!
+	documentIds := []string{}
+	for _, d := range batch.Docs {
+		// Marshal the insertDocument data to patch it
+		insertDocData, insertDocMarshalErr := json.Marshal(d.Doc)
+		if insertDocMarshalErr != nil {
+			sendSuccessResponse(w, documentIds)
+			return
+		}
+		if insertDocData == nil {
+			sendSuccessResponse(w, documentIds)
+			return
+		}
+
+		// Insert the document
+		insertRes := document.Insert(types.DocumentID(d.DocID), types.DocumentRaw(types.JSONString(insertDocData)), cm.None[document.DocumentInsertOptions]())
+		if insertErr := insertRes.Err(); insertErr != nil {
+			sendSuccessResponse(w, documentIds)
+			return
+		}
+
+		documentIds = append(documentIds, d.DocID)
+	}
+
+	sendSuccessResponse(w, documentIds)
 }
+
+// Handle upserting a document
+func handleUpsertDocument(w http.ResponseWriter, r *http.Request, documentId string) {
+	// Read the HTTP request body
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to get request body: %s", err))
+		return
+	}
+	defer r.Body.Close()
+
+	// Parse the upsert from the request body
+	var patch Upsert
+	jsonErr := json.Unmarshal(body, &patch)
+	if err != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to unmarshal request body JSON: %s", jsonErr))
+		return
+	}
+
+	// Ensure the IDs match
+	if &patch.DocID != nil && patch.DocID != documentId {
+		sendErrorResponse(w, fmt.Sprintf("document ID specified in body [%s] does not match path [%s]", patch.DocID, documentId))
+		return
+	}
+
+	// Read the document
+	getRes := document.Get(types.DocumentID(documentId), cm.None[document.DocumentGetOptions]())
+	if getRes.IsErr() {
+		getResErr := getRes.Err()
+		if *getResErr == types.DocumentErrorNotFound { // If the doc wasn't found, insert it and return early
+
+			// Marshal the insertDocument data to patch it
+			insertDocData, insertDocMarshalErr := json.Marshal(patch.Insert)
+			if insertDocMarshalErr != nil {
+				sendErrorResponse(w, fmt.Sprintf("failed to marshal insert document: %s", insertDocMarshalErr))
+				return
+			}
+			if insertDocData == nil {
+				sendErrorResponse(w, "invalid insert doc data (cannot be nil)")
+				return
+			}
+
+			// Insert the document
+			insertRes := document.Insert(types.DocumentID(documentId), types.DocumentRaw(types.JSONString(insertDocData)), cm.Some(document.DocumentInsertOptions{
+				TimeoutNs: cm.Some(uint64(time.Second.Nanoseconds())),
+			}))
+			if insertErr := insertRes.Err(); insertErr != nil {
+				sendErrorResponse(w, fmt.Sprintf("insert operation failed: %s", insertErr))
+				return
+			}
+			sendSuccessResponse(w, documentId)
+		} else { // If some other error occurred, return it
+			sendErrorResponse(w, fmt.Sprintf("get operation failed: %s", getResErr))
+		}
+		return
+	}
+	doc := getRes.OK()
+
+	// Marshal the patch json data
+	patchesData, patchesMarshalErr := json.Marshal(patch.Patches)
+	if patchesMarshalErr != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to marshal patched document: %s", patchesMarshalErr))
+		return
+	}
+	if patchesData == nil {
+		sendErrorResponse(w, "invalid patches data (cannot be nil)")
+		return
+	}
+
+	// Decode all the patches
+	patches, err := jsonpatch.DecodePatch(patchesData)
+	if err != nil {
+		sendErrorResponse(w, "failed to decode patches")
+		return
+	}
+
+	// Patch the document
+	patched, err := patches.Apply([]byte(*doc.Document.Raw()))
+	if err != nil {
+		sendErrorResponse(w, fmt.Sprintf("failed to apply patches: %s", err))
+		return
+	}
+
+	// Replace the existing document
+	replaceRes := document.Replace(types.DocumentID(documentId), types.DocumentRaw(types.JSONString(patched)), cm.Some(document.DocumentReplaceOptions{
+		Cas:       doc.Cas,
+		TimeoutNs: cm.Some(uint64(time.Second.Nanoseconds())),
+	}))
+	if replaceRes.IsErr() {
+		sendErrorResponse(w, fmt.Sprintf("patch operation failed: %s", replaceRes.Err()))
+		return
+	}
+
+	sendSuccessResponse(w, documentId)
+}
+
+// Handle updating batches of documents
+func handleBatchUpsert(w http.ResponseWriter, r *http.Request) {
+	// TODO: IMPLEMENT THIS!
+	sendSuccessResponse(w, "handleBatchUpsert")
+}
+
+///////////////
+// Utilities //
+///////////////
 
 // Response is a generic struct that holds any data of type T
 type SuccessResponse[T any] struct {

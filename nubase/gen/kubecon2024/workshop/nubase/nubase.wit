@@ -3303,7 +3303,7 @@ package wasmcloud:couchbase@0.1.0-draft {
 		get: func(id: document-id, options: option<document-get-options>) -> result<document-get-result, document-error>;
 
 		/// Retrieve a document by ID from any replica
-		get-any-repliacs: func(id: document-id, options: option<document-get-any-replica-options>) -> result<document-get-replica-result, document-error>;
+		get-any-replicas: func(id: document-id, options: option<document-get-any-replica-options>) -> result<document-get-replica-result, document-error>;
 
 		/// Retrieve a document by ID from all replicas
 		get-all-replicas: func(id: document-id, options: option<document-get-all-replica-options>) -> result<list<document-get-replica-result>, document-error>;

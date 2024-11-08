@@ -59,11 +59,18 @@ stop-devcontainer: _ensure-tool-docker
 
 couchbase_container_name := "couchbase"
 
+# Start the couchbase cluster
 start-couchbase:
     {{docker}} compose -f docker-compose.yml up
 
+# Stop the local couchbase cluster
 stop-couchbase:
     {{docker}} compose -f docker-compose.yml down
+
+# Clear out the local couchbase cluster
+clear-couchbase:
+    {{docker}} compose -f docker-compose.yml rm
+    {{docker}} volume rm wasmcon2024-couchbase-workshop_couchbase-data
 
 #########
 # Build #
