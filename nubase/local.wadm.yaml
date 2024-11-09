@@ -43,8 +43,7 @@ spec:
     - name: couchbase
       type: capability
       properties:
-        #image: ghcr.io/vados-cosmonic/provider-wasmcloud-couchbase:v0.1.0-wamscon2024
-        image: file:///home/mrman/code/work/cosmonic/forks/wasmcloud-provider-couchbase/build/wasmcloud-provider-couchbase.par.gz
+        image: ghcr.io/vados-cosmonic/provider-wasmcloud-couchbase:v0.1.0-wamscon2024
         id: couchbase
 
     # This provider enables us to receive HTTP requests
