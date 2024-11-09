@@ -7,7 +7,14 @@
     "COUCHBASE_DEFAULT_BUCKET": "kubecon",
     "COUCHBASE_DEFAULT_SCOPE": "_default",
     "COUCHBASE_DEFAULT_COLLECTION": "_default",
-    "COUCHBASE_CONNECTION_STRING": "localhost"
+    "COUCHBASE_CONNECTION_STRING": "localhost",
+    "CARGO_HOME" : "/home/gitpod/.cargo",
+    "GOPATH" : "/home/gitpod/go-packages",
+    "GOROOT" : "/home/gitpod/go",
+  },
+  "remoteUser": "gitpod",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/gitpod/.cargo/bin:/home/gitpod/go/bin:/home/gitpod/go-packages/bin"
   },
   "customizations": {
     "vscode": {
