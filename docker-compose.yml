@@ -1,7 +1,9 @@
 x-common-variables: &common-variables
-      - COUCHBASE_ADMINISTRATOR_USERNAME=Administrator
-      - COUCHBASE_ADMINISTRATOR_PASSWORD=password
-      - COUCHBASE_BUCKET=nubase
+      - COUCHBASE_USERNAME=Administrator
+      - COUCHBASE_PASSWORD=password
+      - COUCHBASE_DEFAULT_BUCKET=nubase
+      - COUCHBASE_DEFAULT_SCOPE=_default
+      - COUCHBASE_DEFAULT_COLLECTION=_default
       - COUCHBASE_CONNECTION_STRING=localhost
 
 services:

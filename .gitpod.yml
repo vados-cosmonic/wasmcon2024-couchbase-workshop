@@ -8,7 +8,8 @@ tasks:
   - name: Start Wash
     command: |
       gp await-port 8091
-      wash up
+      cbsh -c 'source bucketSteup.nu; dbSetup $env.COUCHBASE_DEFAULT_BUCKET $env.COUCHBASE_DEFAULT_SCOPE  $env.COUCHBASE_DEFAULT_COLLECTION'
+      wash dev
 
 vscode:
     extensions:

@@ -1,15 +1,12 @@
 {
-  "image": "laurentdoguin/workspace-couchbase-wash@sha256:1ea93a23a591303279aef90f0fc0343c9a85ad801438d00c58fcea8cab3aa895",
-  "dockerComposeFile": "../docker-compose.yml",
+  "image": "laurentdoguin/workspace-couchbase-wash@sha256:c1fdc9ce1af13c9281e525ea125bdd0609f48cdd10ee247194b6ad54c7384d60",
   "runArgs": ["--name", "kcon2024-workshop"],
-  "features": {
-    "ghcr.io/couchbase-starter-kit/devcontainer-features/couchbase-server": {},
-    "ghcr.io/couchbase-starter-kit/devcontainer-features/couchbase-shell": {}
-  },
   "containerEnv": {
-    "COUCHBASE_ADMINISTRATOR_USERNAME": "Administrator",
-    "COUCHBASE_ADMINISTRATOR_PASSWORD": "kubecon2024",
-    "COUCHBASE_BUCKET": "kubecon",
+    "COUCHBASE_USERNAME": "Administrator",
+    "COUCHBASE_PASSWORD": "password",
+    "COUCHBASE_DEFAULT_BUCKET": "kubecon",
+    "COUCHBASE_DEFAULT_SCOPE": "_default",
+    "COUCHBASE_DEFAULT_COLLECTION": "_default",
     "COUCHBASE_CONNECTION_STRING": "localhost"
   },
   "customizations": {
