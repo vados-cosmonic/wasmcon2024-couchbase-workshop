@@ -34,16 +34,18 @@ power of Couchbase underneath:
 
 ## 📦 Dependencies
 
-| Tool     | Description                                                             |
-|----------|-------------------------------------------------------------------------|
-| `go`     | [Golang][golang] toolchain                                              |
-| `tinygo` | [TinyGo][tinygo] toolchain                                              |
-| `wash`   | [WAsmcloud][wasmcloud] SHell, a tool for running WebAssembly components |
+| Tool         | Description                                                             |
+|--------------|-------------------------------------------------------------------------|
+| `go`         | [Golang][golang] toolchain                                              |
+| `tinygo`     | [TinyGo][tinygo] toolchain                                              |
+| `wash`       | [WAsmcloud][wasmcloud] SHell, a tool for running WebAssembly components |
+| `wasm-tools` | [WebAssembly toolkit][wasm-tools] (used during code generation)         |
 
 [wasmcloud]: https://wasmcloud.com/docs
 [golang]: https://go.dev
 [tinygo]: https://tinygo.org
 [wash]: https://wasmcloud.com/docs/ecosystem/wash/
+[wasm-tools]: https://github.com/bytecodealliance/wasm-tools
 
 ## 👟 Quickstart
 

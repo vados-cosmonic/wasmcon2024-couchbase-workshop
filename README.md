@@ -61,19 +61,21 @@ just start-devcontainer
 
 To run manually, ensure that you have the following tools installed:
 
-| Dependency             | Description                                               |
-|------------------------|-----------------------------------------------------------|
-| [`just`][just]         | Task runner (similar to GNU `make`)                       |
-| [`wash`][wash]         | WAsmcloud SHell - a tool for managing wasmCloud instances |
-| [`wit-deps`][wit-deps] | Manual downloading of WIT interfaces                      |
-| [`tinygo`][tinygo]     | [TinyGo][tinygo] toolchain                                |
-| [`go`][go]             | [Go][go] toolchain                                        |
+| Dependency                 | Description                                               |
+|----------------------------|-----------------------------------------------------------|
+| [`just`][just]             | Task runner (similar to GNU `make`)                       |
+| [`wash`][wash]             | WAsmcloud SHell - a tool for managing wasmCloud instances |
+| [`wit-deps`][wit-deps]     | Manual downloading of WIT interfaces                      |
+| [`wasm-tools`][wasm-tools] | WebAssembly toolkit (used during code generation)         |
+| [`tinygo`][tinygo]         | [TinyGo][tinygo] toolchain                                |
+| [`go`][go]                 | [Go][go] toolchain                                        |
 
 [just]: https://github.com/casey/just
 [wash]: https://wasmcloud.com/docs/installation
 [tinygo]: https://tinygo.org/
 [go]: https://go.dev/
 [wit-deps]: https://github.com/bytecodealliance/wit-deps
+[wasm-tools]: https://github.com/bytecodealliance/wasm-tools
 
 You can easily check which tools are not installed by running:
 
