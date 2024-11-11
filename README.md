@@ -2,11 +2,11 @@
 
 Presented by [Couchbase][couchbase] and [Cosmonic][cosmonic] maintainers.
 
+### [📽️ Get the slides](https://docs.google.com/presentation/d/1KOmK13DK9rA7rHA37pbFNxVi2jCkNIhrJkUmK5evW84)
+
+### [🗓️ View Sched.com Event](https://wasmcon24.sched.com/event/ceac3a35d773d3c7498156218db7e22e)
+
 This repository contains everything you need to get started with the workshop:
-
-[on Sched](https://wasmcon24.sched.com/event/ceac3a35d773d3c7498156218db7e22e)
-
-[📽️ Get the slides](https://docs.google.com/presentation/d/1KOmK13DK9rA7rHA37pbFNxVi2jCkNIhrJkUmK5evW84)
 
 [cosmonic]: https://cosmonic.com/
 [couchbase]: https://couchbase.com/
