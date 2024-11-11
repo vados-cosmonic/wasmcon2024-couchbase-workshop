@@ -1,4 +1,4 @@
-image: laurentdoguin/workspace-couchbase-wash@sha256:c1fdc9ce1af13c9281e525ea125bdd0609f48cdd10ee247194b6ad54c7384d60
+image: laurentdoguin/workspace-couchbase-wash
 
 # Commands that will run on workspace start
 tasks:
