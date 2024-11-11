@@ -7,6 +7,5 @@ export def dbSetup [bucket: string; scope: string; collection: string] {
     cb-env scope $scope
     if (collections| where collection == $collection | is-empty) {collections create $collection; print $"Create Collection ($collection)"} else {print "Collection already exist"}
     cb-env collection $collection
-    query $"CREATE PRIMARY INDEX IF NOT EXISTS ON `default`:`($bucket)`.`($scope)`.`($collection)`"
     cb-env
 }
