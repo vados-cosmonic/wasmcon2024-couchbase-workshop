@@ -4,6 +4,7 @@ docker := env_var_or_default("DOCKER", "docker")
 go := env_var_or_default("GO", "go")
 tinygo := env_var_or_default("TINYGO", "tinygo")
 wit-deps := env_var_or_default("WIT_DEPS", "wit-deps")
+wasm-tools := env_var_or_default("WASM_TOOLS", "wasm-tools")
 devcontainer := env_var_or_default("DEVCONTAINER", "devcontainer")
 
 devcontainer_container_name := env_var_or_default("DEVCONTAINER_CONTAINER_NAME", "kcon2024-workshop")
@@ -37,12 +38,16 @@ couchbase_docker_image := env_var_or_default("COUCHBASE_DOCKER_IMAGE", "couchbas
 @_ensure-tool-go:
     command -v {{go}} || echo "go binary is missing/not on your PATH, please install it (see: https://go.dev)"
 
+# Ensure `wasm-tools` tooling is present
+@_ensure-tool-wasm-tools:
+    command -v {{wasm-tools}} || echo "wasm-tools binary is missing/not on your PATH, please install it (see: https://github.com/bytecodealliance/wasm-tools)"
+
 ###############
 # Environment #
 ###############
 
 # Check for required tools
-check: _ensure-tool-wash _ensure-tool-docker _ensure-tool-tinygo _ensure-tool-go
+check: _ensure-tool-wash _ensure-tool-docker _ensure-tool-tinygo _ensure-tool-go _ensure-tool-wasm-tools
 
 # Start the local devcontainer
 start-devcontainer: _ensure-tool-devcontainer
