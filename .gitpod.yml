@@ -6,10 +6,11 @@ tasks:
     command: |
       sudo /entrypoint.sh couchbase-server
   - name: Start Wash
+    init: cargo install just
     command: |
       gp await-port 8091
       cbsh -c 'source bucketSetup.nu; dbSetup $env.COUCHBASE_DEFAULT_BUCKET $env.COUCHBASE_DEFAULT_SCOPE  $env.COUCHBASE_DEFAULT_COLLECTION'
-      wash dev
+      just dev
 
 vscode:
     extensions:
