@@ -63,14 +63,14 @@ just start-devcontainer
 
 To run manually, ensure that you have the following tools installed:
 
-| Dependency                 | Description                                               |
-|----------------------------|-----------------------------------------------------------|
-| [`just`][just]             | Task runner (similar to GNU `make`)                       |
-| [`wash`][wash]             | WAsmcloud SHell - a tool for managing wasmCloud instances |
-| [`wit-deps`][wit-deps]     | Manual downloading of WIT interfaces                      |
-| [`wasm-tools`][wasm-tools] | WebAssembly toolkit (used during code generation)         |
-| [`tinygo`][tinygo]         | [TinyGo][tinygo] toolchain                                |
-| [`go`][go]                 | [Go][go] toolchain                                        |
+| Dependency                 | Description                                               | Easy install method                            |
+|----------------------------|-----------------------------------------------------------|------------------------------------------------|
+| [`just`][just]             | Task runner (similar to GNU `make`)                       | `cargo install just`                           |
+| [`wash`][wash]             | WAsmcloud SHell - a tool for managing wasmCloud instances | `cargo install wash-cli`                       |
+| [`wit-deps`][wit-deps]     | Manual downloading of WIT interfaces                      | `cargo install wit-deps-cli`                   |
+| [`wasm-tools`][wasm-tools] | WebAssembly toolkit (used during code generation)         | `cargo install wasm-tools`                      |
+| [`tinygo`][tinygo]         | [TinyGo][tinygo] toolchain                                | [`tingyo` install guide][tinygo-install-guide] |
+| [`go`][go]                 | [Go][go] toolchain                                        | [`go` install guide][go-install-guide]         |
 
 [just]: https://github.com/casey/just
 [wash]: https://wasmcloud.com/docs/installation
@@ -78,6 +78,8 @@ To run manually, ensure that you have the following tools installed:
 [go]: https://go.dev/
 [wit-deps]: https://github.com/bytecodealliance/wit-deps
 [wasm-tools]: https://github.com/bytecodealliance/wasm-tools
+[tinygo-install-guide]: https://tinygo.org/getting-started/install/
+[go-install-guide]: https://go.dev/learn/
 
 You can easily check which tools are not installed by running:
 
